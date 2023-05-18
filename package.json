@@ -1,9 +1,9 @@
 {
-  "name": "website",
+  "name": "lila-website",
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbo",
+    "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
@@ -12,6 +12,7 @@
     "@mdx-js/loader": "^2.3.0",
     "@mdx-js/react": "^2.3.0",
     "@next/mdx": "^13.4.2",
+    "@tailwindcss/typography": "^0.5.9",
     "@types/mdx": "^2.0.5",
     "@types/node": "20.2.0",
     "@types/react": "18.2.6",

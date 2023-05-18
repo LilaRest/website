@@ -11,6 +11,5 @@ const nextConfig = {
     mdxRs: true,
   },
 };
-
-const withMDX = MDX();
+const withMDX = MDX({});
 export default withMDX(nextConfig);
