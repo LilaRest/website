@@ -9,7 +9,7 @@ export const HomeBoardBox: FC<Props> = ({ children, className, ...props }) => {
   React.Children.forEach(children, (child) => {
     if (React.isValidElement(child)) {
       if (child.type === Preview) previewContent = child;
-      else if (child.type === Content) mainContent = child;
+      else if (child.type === Main) mainContent = child;
     }
   });
 
@@ -25,16 +25,37 @@ export const HomeBoardBox: FC<Props> = ({ children, className, ...props }) => {
       tabIndex={0}
       {...props}
     >
-      <div className="absolute top-0 right-0 left-0 transition-opacity duration-500">
-        {previewContent}
-      </div>
-      <div className="absolute top-0 right-0 left-0 transition-opacity duration-500 w-[100vh]">
-        {mainContent}
-      </div>
+      {previewContent}
+      {mainContent}
     </article>
   );
 };
 
-export const Preview = ({ children }: any) => children;
+interface ContentProps extends React.HTMLAttributes<HTMLDivElement> {}
 
-export const Content = ({ children }: any) => children;
+export const Preview: FC<ContentProps> = ({
+  children,
+  className,
+  ...props
+}) => (
+  <div
+    className={twMerge(
+      "absolute top-0 right-0 left-0 transition-opacity duration-500",
+      className
+    )}
+    {...props}
+  >
+    {children}
+  </div>
+);
+export const Main: FC<ContentProps> = ({ children, className, ...props }) => (
+  <div
+    className={twMerge(
+      "absolute top-0 right-0 left-0 transition-opacity duration-500 w-[100vh]",
+      className
+    )}
+    {...props}
+  >
+    {children}
+  </div>
+);
