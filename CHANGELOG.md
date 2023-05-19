@@ -1,3 +1,16 @@
+## [1.1.0](https://github.com/LilaRest/website/compare/v1.0.0...v1.1.0) (2023-05-19)
+
+
+### Features
+
+* setup minimal error and loading pages ([3e6e7b0](https://github.com/LilaRest/website/commit/3e6e7b0ca12c5bc039683b049185583c10cb87f3))
+* write a minimal Header component and setup basic layout ([1c1eace](https://github.com/LilaRest/website/commit/1c1eace058621eb8a9099d6cd467bb52d335839c))
+
+
+### Others
+
+* setup VSCode excluded files for a better DX ([26639fa](https://github.com/LilaRest/website/commit/26639faaf16a5d55ea6501ca31cfdd3fed5d14ac))
+
 ## 1.0.0 (2023-05-18)
 
 
