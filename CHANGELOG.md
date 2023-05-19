@@ -1,3 +1,17 @@
+## [1.2.1](https://github.com/LilaRest/website/compare/v1.2.0...v1.2.1) (2023-05-19)
+
+
+### Fixes
+
+* **deps:** update nextjs monorepo to v13.4.3 ([6fb101a](https://github.com/LilaRest/website/commit/6fb101a77ac6609c58f895e184cbbcf11065df67))
+
+## [1.2.0](https://github.com/LilaRest/website/compare/v1.1.0...v1.2.0) (2023-05-19)
+
+
+### Features
+
+* add HiddenMask component ([c71b469](https://github.com/LilaRest/website/commit/c71b4690bba6b14608f77331e66a987a232eaf2a))
+
 ## [1.1.0](https://github.com/LilaRest/website/compare/v1.0.0...v1.1.0) (2023-05-19)
 
 
