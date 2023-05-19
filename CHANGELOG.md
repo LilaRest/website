@@ -1,3 +1,13 @@
+## [1.3.0](https://github.com/LilaRest/website/compare/v1.2.1...v1.3.0) (2023-05-19)
+
+
+### Features
+
+* add a grid layout on the home page ([48ad214](https://github.com/LilaRest/website/commit/48ad2148ca24e209a80a0cb9f12b06366fb8b3e2))
+* allow boxes of the home board to be expanded with a pretty animation ([226ce52](https://github.com/LilaRest/website/commit/226ce5248acbe7fd31be388af6f010cb9d21e653))
+* **board:** refactor board's boxes as a single component ([3d79fe5](https://github.com/LilaRest/website/commit/3d79fe5f08e575b5544e953740d519743afa9f6b))
+* install clsx and tailwind-merge + setup variable based theme ([2c03d85](https://github.com/LilaRest/website/commit/2c03d8529cf0b7713df8ecaf9e6acec403728fee))
+
 ## [1.2.1](https://github.com/LilaRest/website/compare/v1.2.0...v1.2.1) (2023-05-19)
 
 
