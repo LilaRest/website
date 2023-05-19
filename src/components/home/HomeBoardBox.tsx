@@ -19,7 +19,7 @@ export const HomeBoardBox: FC<Props> = ({ children, className, ...props }) => {
         "rounded-3xl duration-500 overflow-hidden",
         "absolute",
         "focus:inset-0",
-        "[&_:first-child]:opacity-100 [&_:last-child]:opacity-0 [&:focus_:first-child]:opacity-0 [&:focus_:last-child]:opacity-100",
+        "[&_>:first-child]:opacity-100 [&_>:last-child]:opacity-0 [&_>:last-child]:pointer-events-none [&:focus_>:first-child]:opacity-0 [&:focus_>:first-child]:pointer-events-none [&:focus_>:last-child]:opacity-100",
         className
       )}
       tabIndex={0}
@@ -28,7 +28,7 @@ export const HomeBoardBox: FC<Props> = ({ children, className, ...props }) => {
       <div className="absolute top-0 right-0 left-0 transition-opacity duration-500">
         {previewContent}
       </div>
-      <div className="absolute top-0 right-0 left-0 transition-opacity duration-500">
+      <div className="absolute top-0 right-0 left-0 transition-opacity duration-500 w-[100vh]">
         {mainContent}
       </div>
     </article>
