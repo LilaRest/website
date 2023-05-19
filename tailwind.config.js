@@ -63,7 +63,30 @@ module.exports = {
     extend: {
       backgroundImage: {
         reveal: "radial-gradient(300px circle at var(--mouse-x) var(--mouse-y), #55ff5599, #55ff5599,  white)"
-      }
+      },
+      colors: {
+        bg: "rgb(var(--bg) / <alpha-value>)",
+        fg: "rgb(var(--fg) / <alpha-value>)",
+        primary: {
+          DEFAULT: "rgb(var(--primary-bg) / <alpha-value>)",
+          fg: "rgb(var(--primary-fg) / <alpha-value>)",
+        },
+        secondary: {
+          DEFAULT: "rgb(var(--secondary-bg) / <alpha-value>)",
+          fg: "rgb(var(--secondary-fg) / <alpha-value>)",
+        },
+        destructive: {
+          DEFAULT: "rgb(var(--destructive-bg) / <alpha-value>)",
+          fg: "rgb(var(--destructive-fg) / <alpha-value>)",
+        },
+        accent: {
+          DEFAULT: "rgb(var(--accent-bg) / <alpha-value>)",
+          fg: "rgb(var(--accent-fg) / <alpha-value>)",
+        },
+        border: "rgb(var(--border) / <alpha-value>)",
+        input: "rgb(var(--input) / <alpha-value>)",
+        ring: "rgb(var(--ring) / <alpha-value>)",
+      },
     },
   },
   plugins: [
