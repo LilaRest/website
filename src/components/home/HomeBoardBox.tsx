@@ -16,7 +16,7 @@ export const HomeBoardBox: FC<Props> = ({ children, className, ...props }) => {
   return (
     <article
       className={twMerge(
-        "rounded-3xl duration-500 overflow-hidden",
+        "rounded-3xl duration-500 overflow-hidden ease-in-out",
         "absolute",
         "focus:inset-0",
         "[&_>:first-child]:opacity-100 [&_>:last-child]:opacity-0 [&_>:last-child]:pointer-events-none [&:focus_>:first-child]:opacity-0 [&:focus_>:first-child]:pointer-events-none [&:focus_>:last-child]:opacity-100",
@@ -40,7 +40,7 @@ export const Preview: FC<ContentProps> = ({
 }) => (
   <div
     className={twMerge(
-      "absolute top-0 right-0 left-0 transition-opacity duration-500",
+      "absolute top-0 right-0 left-0 transition-opacity duration-500  p-8",
       className
     )}
     {...props}
@@ -51,7 +51,7 @@ export const Preview: FC<ContentProps> = ({
 export const Main: FC<ContentProps> = ({ children, className, ...props }) => (
   <div
     className={twMerge(
-      "absolute top-0 right-0 left-0 transition-opacity duration-500 w-[100vh]",
+      "absolute top-0 right-0 left-0 transition-opacity duration-500 w-[100vh] p-8",
       className
     )}
     {...props}
