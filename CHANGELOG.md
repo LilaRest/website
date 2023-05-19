@@ -1,3 +1,10 @@
+## [1.5.0](https://github.com/LilaRest/website/compare/v1.4.0...v1.5.0) (2023-05-19)
+
+
+### Features
+
+* lot of tiny improvements on home board. Especially to prevent contents from shifting ([76308a6](https://github.com/LilaRest/website/commit/76308a636c3932a9f76e8f4e3a7dd5b263b432d3))
+
 ## [1.4.0](https://github.com/LilaRest/website/compare/v1.3.0...v1.4.0) (2023-05-19)
 
 
