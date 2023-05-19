@@ -1,3 +1,10 @@
+## [1.4.0](https://github.com/LilaRest/website/compare/v1.3.0...v1.4.0) (2023-05-19)
+
+
+### Features
+
+* add a get back button to escape board boxes ([0001497](https://github.com/LilaRest/website/commit/00014976371340a06221452b5a69e5b41306ad72))
+
 ## [1.3.0](https://github.com/LilaRest/website/compare/v1.2.1...v1.3.0) (2023-05-19)
 
 
