@@ -1,3 +1,11 @@
+## [1.6.0](https://github.com/LilaRest/website/compare/v1.5.0...v1.6.0) (2023-05-19)
+
+
+### Features
+
+* **board:** add an additional right column to the board ([a407bd3](https://github.com/LilaRest/website/commit/a407bd3296f4f56138ce551d4289c414b2215c05))
+* **board:** allow Preview and Main content components of board boxes to directly receive props ([20b8940](https://github.com/LilaRest/website/commit/20b8940dc8ef35d6dce665aa522690a3dc3ef144))
+
 ## [1.5.0](https://github.com/LilaRest/website/compare/v1.4.0...v1.5.0) (2023-05-19)
 
 
