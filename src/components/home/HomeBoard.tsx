@@ -1,10 +1,11 @@
 "use client";
-import { FC, useEffect, useRef } from "react";
+import { FC, useEffect, useRef, useState } from "react";
 import { clsx } from "clsx";
 import { HomeBoardBox, Preview, Content } from "./HomeBoardBox";
 
 export const HomeBoard: FC = () => {
   const board = useRef<HTMLDivElement | null>(null);
+  const [isFocused, setIsFocused] = useState(false);
 
   // This forces all other "being blured" boxes to be blured
   // This prevent boxes overlapping when quickly moving focus with Tab key
@@ -18,11 +19,13 @@ export const HomeBoard: FC = () => {
   };
 
   const handleBoxFocus = (box: HTMLDivElement) => {
+    setIsFocused(true);
     clearPendingHandleBoxBlur();
     box.style.zIndex = "10";
   };
 
   const handleBoxBlur = (box: HTMLDivElement) => {
+    setIsFocused(false);
     clearPendingHandleBoxBlur();
 
     // Reset the box z-index after the animation has ended (500ms)
@@ -52,7 +55,18 @@ export const HomeBoard: FC = () => {
     }
   });
   return (
-    <section ref={board} className="relative w-[100vh] h-[85vh]">
+    <section
+      ref={board}
+      className="relative w-[100vh] h-[85vh] flex justify-center items-end"
+    >
+      <button
+        className={clsx(
+          "py-3 px-6 rounded-lg bg-slate-200 border-slate-300 hover:bg-slate-300 transition border-solid border-2 z-20 relative -bottom-6 font-semibold",
+          isFocused || "hidden"
+        )}
+      >
+        Get back
+      </button>
       <HomeBoardBox
         className={clsx(
           "bg-red-500",
