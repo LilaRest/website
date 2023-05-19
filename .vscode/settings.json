@@ -1,0 +1,24 @@
+{
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "files.exclude": {
+    "renovate.json": false,
+    "tsconfig.json": false,
+    "vercel.json": false,
+    "pnpm-lock.yaml": false,
+    "postcss.config.js": false,
+    "next-env.d.ts": false,
+    "CHANGELOG.md": false,
+    ".releaserc.json": false,
+    ".next": false,
+    ".github": false,
+    "node_modules": false,
+    ".eslintrc.json": false,
+    "package.json": false,
+    ".gitignore": false,
+    "next.config.mjs": false,
+    ".env.local": false,
+    ".env.local.template": false,
+    "README.md": false,
+    "LICENSE": false
+  }
+}
