@@ -3,7 +3,7 @@ import { twMerge } from "tailwind-merge";
 
 interface Props extends React.HTMLAttributes<HTMLDivElement> {}
 
-export const HomeBoardBox: FC<Props> = ({ children, className, ...props }) => {
+export const Box: FC<Props> = ({ children, className, ...props }) => {
   let previewContent = null;
   let mainContent = null;
   React.Children.forEach(children, (child) => {
