@@ -67,7 +67,7 @@ export const HomeBoard: FC = () => {
   return (
     <section
       ref={board}
-      className="relative w-[133vh] h-[85vh] flex justify-center items-end"
+      className="relative w-[133vh] max-w-[calc(100vw-60px)] h-[calc(100%-60px)] flex justify-center items-end overflow-hidden"
     >
       <HomeBoardBox
         className={clsx(
@@ -130,7 +130,19 @@ export const HomeBoard: FC = () => {
       <HomeBoardBox
         className={clsx(
           "bg-yellow-500",
-          "left-[calc(100%/4*3+15px)] top-0 right-0 bottom-0"
+          "left-[calc(100%/4*3+15px)] top-0 right-0 bottom-[calc(100%/3+15px)]"
+        )}
+      >
+        <Preview className="w-[calc(133vh/4*2-15px)]">
+          Excepteur sint occaecat
+        </Preview>
+        <Main>Lorem ipsum dolor sit amet</Main>
+      </HomeBoardBox>
+
+      <HomeBoardBox
+        className={clsx(
+          "bg-pink-500",
+          "left-[calc(100%/4*3+15px)] top-[calc(100%/3*2+15px)] right-0 bottom-0"
         )}
       >
         <Preview className="w-[calc(133vh/4*2-15px)]">
