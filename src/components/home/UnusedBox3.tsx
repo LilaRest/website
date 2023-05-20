@@ -2,12 +2,18 @@ import { FC } from "react";
 import { Box, Preview, Main } from "./Box";
 import { twMerge } from "tailwind-merge";
 
-interface Props extends React.HTMLAttributes<HTMLDivElement> {}
+interface Props extends React.HTMLAttributes<HTMLDivElement> {
+  previewWidth?: string;
+}
 
-export const UnusedBox3: FC<Props> = ({ className, ...props }) => {
+export const UnusedBox3: FC<Props> = ({
+  className,
+  previewWidth,
+  ...props
+}) => {
   return (
     <Box className={twMerge("bg-pink-500", className)} {...props}>
-      <Preview className="w-[calc(133vh/4-15px]">Unused 3</Preview>
+      <Preview className={previewWidth}>Unused 3</Preview>
       <Main>Lorem ipsum dolor sit amet</Main>
     </Box>
   );

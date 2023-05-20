@@ -75,19 +75,40 @@ export const Board: FC = () => {
       ref={board}
       className="relative w-[133vh] max-w-[calc(100vw-60px)] h-[calc(100%-60px)] flex justify-center items-end"
     >
-      <AboutMeBox className="left-0 top-0 right-[calc(100%/4+15px)] bottom-[calc(100%-100%/3+15px)]" />
+      <AboutMeBox
+        className="left-0 top-0 right-[calc(100%/4+15px)] bottom-[calc(100%-100%/3+15px)]"
+        previewWidth="w-[calc(133vh/4*3-15px]"
+      />
 
-      <BookMeBox className="left-0 top-[calc(100%/3+15px)] right-[calc(100%-100%/4+15px)] bottom-0" />
+      <BookMeBox
+        className="left-0 top-[calc(100%/3+15px)] right-[calc(100%-100%/4+15px)] bottom-0"
+        previewWidth="w-[calc(133vh/4-15px)] max-w-[calc((100vw-120px)/4)]"
+      />
 
-      <FeaturedProjectBox className="left-[calc(100%/4+15px)] top-[calc(100%/3+15px)] right-[calc(100%/4*2+15px)] bottom-[calc(100%/3+15px)]" />
+      <FeaturedProjectBox
+        className="left-[calc(100%/4+15px)] top-[calc(100%/3+15px)] right-[calc(100%/4*2+15px)] bottom-[calc(100%/3+15px)]"
+        previewWidth="w-[calc(133vh/4-30px]"
+      />
 
-      <UnusedBox1 className="left-[calc(100%/4*2+15px)] top-[calc(100%/3+15px)] right-[calc(100%/4+15px)] bottom-[calc(100%/3+15px)]" />
+      <UnusedBox1
+        className="left-[calc(100%/4*2+15px)] top-[calc(100%/3+15px)] right-[calc(100%/4+15px)] bottom-[calc(100%/3+15px)]"
+        previewWidth="w-[calc(133vh/4-30px]"
+      />
 
-      <UnusedBox2 className="left-[calc(100%/4+15px)] top-[calc(100%/3*2+15px)] right-[calc(100%/4+15px)] bottom-0" />
+      <UnusedBox2
+        className="left-[calc(100%/4+15px)] top-[calc(100%/3*2+15px)] right-[calc(100%/4+15px)] bottom-0"
+        previewWidth="w-[calc(133vh/4*2-30px)] max-w-[calc((100vw-120px)/2)]"
+      />
 
-      <ArticlesBox className="left-[calc(100%/4*3+15px)] top-0 right-0 bottom-[calc(100%/3+15px)]" />
+      <ArticlesBox
+        className="left-[calc(100%/4*3+15px)] top-0 right-0 bottom-[calc(100%/3+15px)]"
+        previewWidth="w-[calc(133vh/4-15px]"
+      />
 
-      <UnusedBox3 className="left-[calc(100%/4*3+15px)] top-[calc(100%/3*2+15px)] right-0 bottom-0" />
+      <UnusedBox3
+        className="left-[calc(100%/4*3+15px)] top-[calc(100%/3*2+15px)] right-0 bottom-0"
+        previewWidth="w-[calc(133vh/4-15px]"
+      />
 
       <div className="absolute left-0 -bottom-6 right-0 pointer-events-none z-20 flex justify-center">
         <button
