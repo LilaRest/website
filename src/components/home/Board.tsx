@@ -1,7 +1,6 @@
 "use client";
 import { FC, useEffect, useRef } from "react";
 import { clsx } from "clsx";
-import { Box, Preview, Main } from "./Box";
 import AboutMeBox from "./AboutMeBox";
 import BookMeBox from "./BookMeBox";
 import FeaturedProjectBox from "./FeaturedProjectBox";

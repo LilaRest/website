@@ -7,7 +7,7 @@ interface Props extends React.HTMLAttributes<HTMLDivElement> {}
 export const AboutMeBox: FC<Props> = ({ className, ...props }) => {
   return (
     <Box className={twMerge("bg-red-500", className)} {...props}>
-      <Preview className="w-[133vh]">About me</Preview>
+      <Preview className="w-[calc(133vh/4*3-15px]">About me</Preview>
       <Main>Lorem ipsum dolor sit amet</Main>
     </Box>
   );
