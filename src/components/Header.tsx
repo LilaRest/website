@@ -4,8 +4,8 @@ import { FC } from "react";
 import profilePicture from "~/assets/pp.jpg";
 
 const Header: FC = () => (
-  <header className="pb-[92px] relative z-50 border-b border-slate-400 border-solid">
-    <div className="fixed flex justify-between w-screen">
+  <header className="pb-[89px] relative z-50">
+    <div className="fixed flex justify-between w-screen border-b border-slate-400 border-solid">
       <Link href="/" className="pl-4 flex gap-5 justify-center items-center">
         <Image
           src={profilePicture}
