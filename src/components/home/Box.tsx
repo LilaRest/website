@@ -22,33 +22,41 @@ export const Box: FC<BoxProps> = ({ children, className, position, ...props }) =
   const media = useContext(MediaContext);
   const box = useRef<HTMLDivElement | null>(null);
   const container = useRef<HTMLDivElement | null>(null);
-  const [previewContentWidth, setPreviewContentWidth] = useState(0);
-  const [previewContentHeight, setPreviewContentHeight] = useState(0);
-  const [mainContentWidth, setMainContentWidth] = useState(0);
-  const [mainContentHeight, setMainContentHeight] = useState(0);
   const handleContentContainer = () => {
     if (box.current) {
-      const parentRect = box.current.parentElement?.getBoundingClientRect()!;
-      const boxRect = box.current.getBoundingClientRect()!;
+      const board = box.current.parentElement!;
+
+      // Make the container take the whole board space if the box is focused
       if (box.current === document.activeElement) {
         container.current!.style.top = media.gap + "px";
         container.current!.style.left = media.gap + "px";
-        container.current!.style.height = box.current.parentElement?.offsetHeight! - media.gap * 2 + "px";
-        container.current!.style.width = box.current.parentElement?.offsetWidth! - media.gap * 2 + "px";
-      } else {
+        container.current!.style.height = board.offsetHeight! - media.gap * 2 + "px";
+        container.current!.style.width = board.offsetWidth! - media.gap * 2 + "px";
+      }
+      // Else make the container take the box space
+      else {
+        const parentRect = box.current.parentElement?.getBoundingClientRect()!;
+        const boxRect = box.current.getBoundingClientRect()!;
         container.current!.style.top = boxRect.top - parentRect.top + "px";
         container.current!.style.left = boxRect.left - parentRect.left + "px";
         container.current!.style.width = box.current.offsetWidth + "px";
         container.current!.style.height = box.current.offsetHeight + "px";
       }
-      setPreviewContentWidth(box.current.offsetWidth);
-      setPreviewContentHeight(box.current.offsetHeight);
+      // Ensure the preview content has strictly the same size as the box
+      const previewContentEl = container.current!.firstElementChild! as HTMLDivElement;
+      previewContentEl.style.width = box.current.offsetWidth + "px";
+      previewContentEl.style.height = box.current.offsetHeight + "px";
+
+      // If the screenSize is tiny or small, ensure the main content has the same width as the window and same height as the board
+      const mainContentEl = container.current!.lastElementChild! as HTMLDivElement;
       if (["tiny", "small"].includes(media.name)) {
-        setMainContentWidth(window.innerWidth);
-        setMainContentHeight(window.innerHeight);
-      } else {
-        setMainContentWidth(box.current.parentElement?.offsetWidth! - media.gap * 2);
-        setMainContentHeight(box.current.parentElement?.offsetHeight! - media.gap * 2);
+        mainContentEl.style.width = window.innerWidth + "px";
+        mainContentEl.style.height = board.offsetHeight + "px";
+      }
+      // Else ensure the main content has the same size as the board
+      else {
+        mainContentEl.style.width = board.offsetWidth! - media.gap * 2 + "px";
+        mainContentEl.style.height = board.offsetHeight! - media.gap * 2 + "px";
       }
     }
   };
@@ -93,20 +101,10 @@ export const Box: FC<BoxProps> = ({ children, className, position, ...props }) =
         {...props}
       >
         {/* Insert preview content as first child */}
-        {React.cloneElement(previewContent, {
-          style: {
-            width: previewContentWidth + "px",
-            height: previewContentHeight + "px",
-          },
-        })}
+        {previewContent}
 
         {/* Insert main content as second child */}
-        {React.cloneElement(mainContent, {
-          style: {
-            width: mainContentWidth + "px",
-            height: mainContentHeight + "px",
-          },
-        })}
+        {mainContent}
       </div>
     </article>
   );
