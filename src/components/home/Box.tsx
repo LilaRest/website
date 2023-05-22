@@ -48,7 +48,7 @@ export const Box: FC<BoxProps> = ({ children, className, position, ...props }) =
       previewContentEl.style.height = box.current.offsetHeight + "px";
 
       // If the screenSize is tiny or small, ensure the main content has the same width as the window and same height as the board
-      const mainContentEl = container.current!.lastElementChild! as HTMLDivElement;
+      const mainContentEl = previewContentEl.nextElementSibling as HTMLDivElement;
       if (["tiny", "small"].includes(media.name)) {
         mainContentEl.style.width = window.innerWidth + "px";
         mainContentEl.style.height = board.offsetHeight + "px";
@@ -65,11 +65,10 @@ export const Box: FC<BoxProps> = ({ children, className, position, ...props }) =
     setIsFocused(true);
 
     // Ensure all other boxes containers are at the background
-    Array.from(box.current!.parentElement!.children).forEach((siblingBox) => {
-      if (siblingBox === box.current) return;
-      const container = siblingBox.firstElementChild! as HTMLDivElement;
-      if (container.style.zIndex === "10") container.style.zIndex = "5";
-      else if (container.style.zIndex === "5") container.style.zIndex = "0";
+    // (zIndex are decremented 1 by 1 to ensure the each box have more priority that all boxes focused before it and not refocused then)
+    Array.from(box.current!.parentElement!.children).forEach((box) => {
+      const container = box.firstElementChild! as HTMLDivElement;
+      if (container.style.zIndex !== "0") container.style.zIndex = parseInt(container.style.zIndex) - 1 + "";
     });
 
     // Pur the current focused container at the foreground
@@ -113,6 +112,7 @@ export const Box: FC<BoxProps> = ({ children, className, position, ...props }) =
       >
         {previewContent}
         {mainContent}
+        {/* <button>Get back</button> */}
       </div>
     </article>
   );
