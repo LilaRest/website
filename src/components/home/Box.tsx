@@ -101,8 +101,9 @@ export const Box: FC<BoxProps> = ({ children, className, position, ...props }) =
         ref={container}
         className={twMerge(
           "rounded-3xl duration-500 overflow-hidden ease-in-out absolute transition-[top,left,height,width]",
-          "[&_>:first-child]:opacity-100 [&_>:last-child]:opacity-0 [&_>:last-child]:pointer-events-none",
-          isFocused && "[&_>:first-child]:opacity-0 [&_>:last-child]:opacity-100 [&_>:first-child]:pointer-events-none",
+          "[&_>:nth-child(1)]:opacity-100 [&_>:nth-child(2)]:opacity-0 [&_>:nth-child(2)]:pointer-events-none [&_>:nth-child(3)]:opacity-0 [&_>:nth-child(3)]:pointer-events-none",
+          isFocused &&
+            "[&_>:nth-child(1)]:opacity-0 [&_>:nth-child(1)]:pointer-events-none [&_>:nth-child(2)]:opacity-100 [&_>:nth-child(2)]:pointer-events-auto [&_>:nth-child(3)]:opacity-100  [&_>:nth-child(3)]:pointer-events-auto",
           className
         )}
         onFocus={handleFocus}
@@ -112,7 +113,14 @@ export const Box: FC<BoxProps> = ({ children, className, position, ...props }) =
       >
         {previewContent}
         {mainContent}
-        {/* <button>Get back</button> */}
+        <div className="absolute bottom-4 left-0 right-0 flex justify-center transition-opacity duration-500">
+          <button
+            onClick={handleBlur}
+            className="bg-slate-200 hover:bg-slate-300 transition duration-500 border-slate-400 border-2 border-solid rounded-xl py-2 px-4"
+          >
+            Get back
+          </button>
+        </div>
       </div>
     </article>
   );
