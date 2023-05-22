@@ -1,4 +1,3 @@
-import clsx from "clsx";
 import React, { FC, useContext, useEffect, useRef, useState } from "react";
 import { twMerge } from "tailwind-merge";
 import { MediaContext } from "./Board";
@@ -22,12 +21,13 @@ export const Box: FC<BoxProps> = ({ children, className, position, ...props }) =
   const media = useContext(MediaContext);
   const box = useRef<HTMLDivElement | null>(null);
   const container = useRef<HTMLDivElement | null>(null);
+  const [isFocused, setIsFocused] = useState(false);
   const handleContentContainer = () => {
     if (box.current) {
       const board = box.current.parentElement!;
 
       // Make the container take the whole board space if the box is focused
-      if (box.current === document.activeElement) {
+      if (isFocused) {
         container.current!.style.top = media.gap + "px";
         container.current!.style.left = media.gap + "px";
         container.current!.style.height = board.offsetHeight! - media.gap * 2 + "px";
@@ -61,10 +61,15 @@ export const Box: FC<BoxProps> = ({ children, className, position, ...props }) =
     }
   };
   const handleFocus = () => {
+    // Set the new focused state
+    setIsFocused(true);
+
     // Ensure all other boxes containers are at the background
-    Array.from(box.current!.parentElement!.children).forEach((box) => {
-      const container = box.firstElementChild! as HTMLDivElement;
-      container.style.zIndex = "0";
+    Array.from(box.current!.parentElement!.children).forEach((siblingBox) => {
+      if (siblingBox === box.current) return;
+      const container = siblingBox.firstElementChild! as HTMLDivElement;
+      if (container.style.zIndex === "10") container.style.zIndex = "5";
+      else if (container.style.zIndex === "5") container.style.zIndex = "0";
     });
 
     // Pur the current focused container at the foreground
@@ -73,37 +78,40 @@ export const Box: FC<BoxProps> = ({ children, className, position, ...props }) =
     // Update container size and position
     handleContentContainer();
   };
+  const handleBlur = () => {
+    // If the whole page has not lost focus (e.g. user changed tab or window)
+    if (document.hasFocus()) {
+      // Set the new focused state
+      setIsFocused(false);
 
+      // Update container size and position
+      handleContentContainer();
+    }
+  };
   useEffect(() => {
     handleContentContainer();
     window.addEventListener("resize", handleContentContainer);
-    return () => window.removeEventListener("resize", handleContentContainer);
+    return () => {
+      window.removeEventListener("resize", handleContentContainer);
+    };
   });
 
   return (
-    <article
-      ref={box}
-      tabIndex={0}
-      onFocus={handleFocus}
-      onBlur={handleContentContainer}
-      className={clsx(
-        "w-full h-full",
-        "[&_>_div_>:first-child]:opacity-100 [&_>_div_>:last-child]:opacity-0 [&_>_div_>:last-child]:pointer-events-none [&:focus_>_div_>:first-child]:opacity-0 [&:focus_>_div_>:first-child]:pointer-events-none [&:focus_>_div_>:last-child]:opacity-100",
-        position
-      )}
-    >
+    <article ref={box} className={position}>
       <div
         ref={container}
         className={twMerge(
           "rounded-3xl duration-500 overflow-hidden ease-in-out absolute transition-[top,left,height,width]",
+          "[&_>:first-child]:opacity-100 [&_>:last-child]:opacity-0 [&_>:last-child]:pointer-events-none",
+          isFocused && "[&_>:first-child]:opacity-0 [&_>:last-child]:opacity-100 [&_>:first-child]:pointer-events-none",
           className
         )}
+        onFocus={handleFocus}
+        onBlur={handleBlur}
+        tabIndex={0}
         {...props}
       >
-        {/* Insert preview content as first child */}
         {previewContent}
-
-        {/* Insert main content as second child */}
         {mainContent}
       </div>
     </article>
@@ -111,7 +119,7 @@ export const Box: FC<BoxProps> = ({ children, className, position, ...props }) =
 };
 
 interface ContentProps extends React.HTMLAttributes<HTMLDivElement> {}
-export const Preview: FC<ContentProps> = ({ children, className, ...props }) => (
+const Content: FC<ContentProps> = ({ children, className, ...props }) => (
   <div
     className={twMerge("w-full h-full duration-500 p-8 absolute top-0 left-0 transition-opacity", className)}
     {...props}
@@ -119,11 +127,5 @@ export const Preview: FC<ContentProps> = ({ children, className, ...props }) => 
     {children}
   </div>
 );
-export const Main: FC<ContentProps> = ({ children, className, ...props }) => (
-  <div
-    className={twMerge("w-full h-full duration-500 p-8 absolute top-0 left-0 transition-opacity opacity-0", className)}
-    {...props}
-  >
-    {children}
-  </div>
-);
+export const Preview = Content.bind({});
+export const Main = Content.bind({});
