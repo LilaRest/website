@@ -9,8 +9,8 @@ export interface BoxProps extends React.HTMLAttributes<HTMLDivElement> {
 
 export const Box: FC<BoxProps> = ({ children, className, position, ...props }) => {
   // Retrieve Preview and Main child components contents
-  let previewContent: React.ReactElement | null = null;
-  let mainContent: React.ReactElement | null = null;
+  let previewContent: React.ReactElement = <div></div>;
+  let mainContent: React.ReactElement = <div></div>;
   React.Children.forEach(children, (child) => {
     if (React.isValidElement(child)) {
       if (child.type === Preview) previewContent = child;
@@ -22,10 +22,6 @@ export const Box: FC<BoxProps> = ({ children, className, position, ...props }) =
   const media = useContext(MediaContext);
   const box = useRef<HTMLDivElement | null>(null);
   const container = useRef<HTMLDivElement | null>(null);
-  const [containerTop, setContainerTop] = useState(0);
-  const [containerLeft, setContainerLeft] = useState(0);
-  const [containerWidth, setContainerWidth] = useState(0);
-  const [containerHeight, setContainerHeight] = useState(0);
   const [previewContentWidth, setPreviewContentWidth] = useState(0);
   const [previewContentHeight, setPreviewContentHeight] = useState(0);
   const [mainContentWidth, setMainContentWidth] = useState(0);
@@ -35,15 +31,15 @@ export const Box: FC<BoxProps> = ({ children, className, position, ...props }) =
       const parentRect = box.current.parentElement?.getBoundingClientRect()!;
       const boxRect = box.current.getBoundingClientRect()!;
       if (box.current === document.activeElement) {
-        setContainerTop(media.gap);
-        setContainerLeft(media.gap);
-        setContainerHeight(box.current.parentElement?.offsetHeight! - media.gap * 2);
-        setContainerWidth(box.current.parentElement?.offsetWidth! - media.gap * 2);
+        container.current!.style.top = media.gap + "px";
+        container.current!.style.left = media.gap + "px";
+        container.current!.style.height = box.current.parentElement?.offsetHeight! - media.gap * 2 + "px";
+        container.current!.style.width = box.current.parentElement?.offsetWidth! - media.gap * 2 + "px";
       } else {
-        setContainerTop(boxRect.top - parentRect.top);
-        setContainerLeft(boxRect.left - parentRect.left);
-        setContainerWidth(box.current.offsetWidth);
-        setContainerHeight(box.current.offsetHeight);
+        container.current!.style.top = boxRect.top - parentRect.top + "px";
+        container.current!.style.left = boxRect.left - parentRect.left + "px";
+        container.current!.style.width = box.current.offsetWidth + "px";
+        container.current!.style.height = box.current.offsetHeight + "px";
       }
       setPreviewContentWidth(box.current.offsetWidth);
       setPreviewContentHeight(box.current.offsetHeight);
@@ -90,41 +86,27 @@ export const Box: FC<BoxProps> = ({ children, className, position, ...props }) =
     >
       <div
         ref={container}
-        style={{
-          top: containerTop + "px",
-          left: containerLeft + "px",
-          width: containerWidth + "px",
-          height: containerHeight + "px",
-        }}
         className={twMerge(
           "rounded-3xl duration-500 overflow-hidden ease-in-out absolute transition-[top,left,height,width]",
           className
         )}
         {...props}
       >
-        {/* Insert main content if given, else an empty div */}
-        {previewContent ? (
-          React.cloneElement(previewContent, {
-            style: {
-              width: previewContentWidth + "px",
-              height: previewContentHeight + "px",
-            },
-          })
-        ) : (
-          <div></div>
-        )}
+        {/* Insert preview content as first child */}
+        {React.cloneElement(previewContent, {
+          style: {
+            width: previewContentWidth + "px",
+            height: previewContentHeight + "px",
+          },
+        })}
 
-        {/* Insert main content if given, else an empty div */}
-        {mainContent ? (
-          React.cloneElement(mainContent, {
-            style: {
-              width: mainContentWidth + "px",
-              height: mainContentHeight + "px",
-            },
-          })
-        ) : (
-          <div></div>
-        )}
+        {/* Insert main content as second child */}
+        {React.cloneElement(mainContent, {
+          style: {
+            width: mainContentWidth + "px",
+            height: mainContentHeight + "px",
+          },
+        })}
       </div>
     </article>
   );
