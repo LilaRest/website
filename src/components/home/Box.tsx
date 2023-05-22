@@ -21,6 +21,7 @@ export const Box: FC<BoxProps> = ({ children, className, position, ...props }) =
   const media = useContext(MediaContext);
   const box = useRef<HTMLDivElement | null>(null);
   const container = useRef<HTMLDivElement | null>(null);
+  const getBackButton = useRef<HTMLButtonElement | null>(null);
   const [isFocused, setIsFocused] = useState(false);
   const handleContentContainer = () => {
     if (box.current) {
@@ -61,30 +62,39 @@ export const Box: FC<BoxProps> = ({ children, className, position, ...props }) =
     }
   };
   const handleFocus = () => {
-    // Set the new focused state
-    setIsFocused(true);
+    // If the box is not already focused
+    if (!isFocused) {
+      // Set the new focused state
+      setIsFocused(true);
 
-    // Ensure all other boxes containers are at the background
-    // (zIndex are decremented 1 by 1 to ensure the each box have more priority that all boxes focused before it and not refocused then)
-    Array.from(box.current!.parentElement!.children).forEach((box) => {
-      const container = box.firstElementChild! as HTMLDivElement;
-      if (container.style.zIndex !== "0") container.style.zIndex = parseInt(container.style.zIndex) - 1 + "";
-    });
+      // Ensure all other boxes containers are at the background
+      // (zIndex are decremented 1 by 1 to ensure the each box have more priority that all boxes focused before it and not refocused then)
+      Array.from(box.current!.parentElement!.children).forEach((box) => {
+        const container = box.firstElementChild! as HTMLDivElement;
+        if (container.style.zIndex !== "0") container.style.zIndex = parseInt(container.style.zIndex) - 1 + "";
+      });
 
-    // Pur the current focused container at the foreground
-    container.current!.style.zIndex = "10";
+      // Pur the current focused container at the foreground
+      container.current!.style.zIndex = "10";
 
-    // Update container size and position
-    handleContentContainer();
+      // Update container size and position
+      handleContentContainer();
+    }
   };
   const handleBlur = () => {
     // If the whole page has not lost focus (e.g. user changed tab or window)
     if (document.hasFocus()) {
-      // Set the new focused state
-      setIsFocused(false);
+      // Give browser time to focus the next element
+      requestAnimationFrame(() => {
+        // If the new focused element is not still in the current container
+        if (!document.activeElement || !container.current!.contains(document.activeElement)) {
+          // Set the new focused state
+          setIsFocused(false);
 
-      // Update container size and position
-      handleContentContainer();
+          // Update container size and position
+          handleContentContainer();
+        }
+      });
     }
   };
   useEffect(() => {
@@ -115,6 +125,7 @@ export const Box: FC<BoxProps> = ({ children, className, position, ...props }) =
         {mainContent}
         <div className="absolute bottom-4 left-0 right-0 flex justify-center transition-opacity duration-500">
           <button
+            ref={getBackButton}
             onClick={handleBlur}
             className="bg-slate-200 hover:bg-slate-300 transition duration-500 border-slate-400 border-2 border-solid rounded-xl py-2 px-4"
           >
