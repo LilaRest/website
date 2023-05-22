@@ -1,3 +1,26 @@
+## [1.7.0](https://github.com/LilaRest/website/compare/v1.6.0...v1.7.0) (2023-05-22)
+
+
+### Features
+
+* **board:** allows to define each board preview content width through a previewWidth prop ([b9d4929](https://github.com/LilaRest/website/commit/b9d4929d4ed50cd93065911266150be617a3d5c1))
+* **board:** full rewrite of board-related components for better perfs and behaviors ([a38ddd1](https://github.com/LilaRest/website/commit/a38ddd1570412a20779eaf26a1f55627a98d6807))
+* **board:** improve again Box component by replacing states by real time changes ([e6e79a0](https://github.com/LilaRest/website/commit/e6e79a04d13db4d8484be71a4514065ca8c762b3))
+* **board:** improve responsiveness of board ([1febf67](https://github.com/LilaRest/website/commit/1febf6702e4d38c25e10546bbed5904b5281e792))
+* **board:** simplify a bit the Box component ([5d2758c](https://github.com/LilaRest/website/commit/5d2758cd25ac3ab14518eaf2e01970c22761c7c9))
+* **board:** some more improvement to the Box component (cleaner code, window blur fix, ...) ([39f3ee7](https://github.com/LilaRest/website/commit/39f3ee7d21b0aa597222ce385eb15a02494beb08))
+
+
+### Others
+
+* **board:** move each box in its own components for easier maintainability ([c440322](https://github.com/LilaRest/website/commit/c440322f69debbae1ae1cdda476c6709f61d4a5e))
+
+
+### Fixes
+
+* **board:** boxes preview contents widths ([d4bc912](https://github.com/LilaRest/website/commit/d4bc91256af4dfc9c5fd1559a363d51c90d329ee))
+* **home:** remove unwanted vertical scroll ([7a27a41](https://github.com/LilaRest/website/commit/7a27a41c0be0d42c5646d1f6517aab747c7bf203))
+
 ## [1.6.0](https://github.com/LilaRest/website/compare/v1.5.0...v1.6.0) (2023-05-19)
 
 
