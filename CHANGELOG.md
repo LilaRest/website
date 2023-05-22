@@ -1,3 +1,16 @@
+## [1.8.0](https://github.com/LilaRest/website/compare/v1.7.0...v1.8.0) (2023-05-22)
+
+
+### Features
+
+* **board:** add "Get back" button to boxes containers ([ea19716](https://github.com/LilaRest/website/commit/ea197167fae5658fa5c81fa54f706a7d74f4c79b))
+* **board:** make handleFocus() zIndex mechanism more resilient by decrementing 1 by 1 ([6a5d9f2](https://github.com/LilaRest/website/commit/6a5d9f2a245a6d6198227653829b9a99378bbb34))
+
+
+### Fixes
+
+* **box:** fix blur detected when focus wasn't lost ([843585b](https://github.com/LilaRest/website/commit/843585b4d5f4441f61d56f1991086e3de34a63df))
+
 ## [1.7.0](https://github.com/LilaRest/website/compare/v1.6.0...v1.7.0) (2023-05-22)
 
 
