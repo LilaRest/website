@@ -1,3 +1,10 @@
+## [1.8.1](https://github.com/LilaRest/website/compare/v1.8.0...v1.8.1) (2023-05-23)
+
+
+### Fixes
+
+* **deps:** update dependency eslint to v8.41.0 ([561a7ee](https://github.com/LilaRest/website/commit/561a7ee7ce40ed4f9be5c7a8edc4eeab40a24a96))
+
 ## [1.8.0](https://github.com/LilaRest/website/compare/v1.7.0...v1.8.0) (2023-05-22)
 
 
