@@ -8,6 +8,7 @@ import UnusedBox2 from "./UnusedBox2";
 import ArticlesBox from "./ArticlesBox";
 import UnusedBox3 from "./UnusedBox3";
 import { createContext } from "react";
+import { clsx } from "clsx";
 
 // Bunch of types and constants
 const screenSizes = ["tiny", "small", "medium", "large"] as const;
@@ -132,7 +133,9 @@ export const Board: FC = () => {
         padding: medias[screenSize].gap + "px",
       }}
       ref={board}
-      className="grid w-[3000px] relative"
+      className={clsx("grid w-[3000px] relative")}
+      // Below medium screen size, the boxes are
+      // ["large", "medium"].includes(screenSize) && "relative")}
     >
       <MediaContext.Provider value={medias[screenSize]}>
         {screenSize === "large" && (

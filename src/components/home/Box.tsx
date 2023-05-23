@@ -27,12 +27,23 @@ export const Box: FC<BoxProps> = ({ children, className, position, ...props }) =
     if (box.current) {
       const board = box.current.parentElement!;
 
-      // Make the container take the whole board space if the box is focused
+      // Expand the conainer on focus
       if (isFocused) {
-        container.current!.style.top = media.gap + "px";
-        container.current!.style.left = media.gap + "px";
-        container.current!.style.height = board.offsetHeight! - media.gap * 2 + "px";
-        container.current!.style.width = board.offsetWidth! - media.gap * 2 + "px";
+        // If the screenSize is tiny or small, make the container take the whole window space
+        if (["tiny", "small"].includes(media.name)) {
+          container.current!.style.top = board.offsetTop! + "px";
+          container.current!.style.left = "0";
+          container.current!.style.height = `calc(100vh - ${board.offsetTop! + "px"})`;
+          container.current!.style.width = "100vw";
+        }
+
+        // Make the container take the whole board space if the box is focused
+        else {
+          container.current!.style.top = media.gap + "px";
+          container.current!.style.left = media.gap + "px";
+          container.current!.style.height = board.offsetHeight! - media.gap * 2 + "px";
+          container.current!.style.width = board.offsetWidth! - media.gap * 2 + "px";
+        }
       }
       // Else make the container take the box space
       else {
@@ -82,6 +93,9 @@ export const Box: FC<BoxProps> = ({ children, className, position, ...props }) =
     }
   };
   const handleBlur = () => {
+    // Ensure the get back button is blurred once clicked (else the below condition will consider the box still being focused)
+    getBackButton.current!.blur();
+
     // If the whole page has not lost focus (e.g. user changed tab or window)
     if (document.hasFocus()) {
       // Give browser time to focus the next element
@@ -110,10 +124,11 @@ export const Box: FC<BoxProps> = ({ children, className, position, ...props }) =
       <div
         ref={container}
         className={twMerge(
-          "rounded-3xl duration-500 overflow-hidden ease-in-out absolute transition-[top,left,height,width]",
+          "rounded-3xl duration-500 overflow-hidden ease-in-out absolute transition-[top,left,height,width,border-radius]",
           "[&_>:nth-child(1)]:opacity-100 [&_>:nth-child(2)]:opacity-0 [&_>:nth-child(2)]:pointer-events-none [&_>:nth-child(3)]:opacity-0 [&_>:nth-child(3)]:pointer-events-none",
           isFocused &&
             "[&_>:nth-child(1)]:opacity-0 [&_>:nth-child(1)]:pointer-events-none [&_>:nth-child(2)]:opacity-100 [&_>:nth-child(2)]:pointer-events-auto [&_>:nth-child(3)]:opacity-100  [&_>:nth-child(3)]:pointer-events-auto",
+          isFocused && ["tiny", "small"].includes(media.name) && "fixed rounded-none",
           className
         )}
         onFocus={handleFocus}
@@ -121,6 +136,7 @@ export const Box: FC<BoxProps> = ({ children, className, position, ...props }) =
         tabIndex={0}
         {...props}
       >
+        {/* Insert preview and main box contents */}
         {previewContent}
         {mainContent}
         <div className="absolute bottom-4 left-0 right-0 flex justify-center transition-opacity duration-500">

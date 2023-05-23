@@ -4,16 +4,10 @@ import { FC } from "react";
 import profilePicture from "~/assets/pp.jpg";
 
 const Header: FC = () => (
-  <header className="pb-[89px] relative z-50">
-    <div className="fixed flex justify-between w-screen">
+  <header className="pb-[88px] relative z-50">
+    <div className="fixed flex justify-between w-screen backdrop-blur-lg">
       <Link href="/" className="pl-4 flex gap-5 justify-center items-center">
-        <Image
-          src={profilePicture}
-          alt="Lila Rest"
-          width={55}
-          height={55}
-          className="rounded-3xl"
-        />
+        <Image src={profilePicture} alt="Lila Rest" width={55} height={55} className="rounded-3xl" />
         <h1 className="text-2xl font-bold text-slate-700">Lila Rest</h1>
       </Link>
       <nav className="p-8">
