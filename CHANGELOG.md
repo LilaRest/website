@@ -1,3 +1,15 @@
+## [1.10.0](https://github.com/LilaRest/website/compare/v1.9.0...v1.10.0) (2023-05-25)
+
+
+### Features
+
+* fix size of preview and main boxes contents ([fea40c9](https://github.com/LilaRest/website/commit/fea40c94f15979aede5b179cc5a8309c9f028ded))
+
+
+### Docs
+
+* **box:** add inline comments to explain each part of the component code ([dec1168](https://github.com/LilaRest/website/commit/dec11683fa4822a662a55cf37fcb3fc46b5d9203))
+
 ## [1.9.0](https://github.com/LilaRest/website/compare/v1.8.1...v1.9.0) (2023-05-25)
 
 
