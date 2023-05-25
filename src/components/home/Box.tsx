@@ -23,53 +23,75 @@ export const Box: FC<BoxProps> = ({ children, className, position, ...props }) =
   const container = useRef<HTMLDivElement | null>(null);
   const getBackButton = useRef<HTMLButtonElement | null>(null);
   const [isFocused, setIsFocused] = useState(false);
+
   const handleContentContainer = () => {
     if (box.current) {
       const board = box.current.parentElement!;
 
       // Expand the conainer on focus
+      const boxRect = box.current.getBoundingClientRect()!;
+      const boardRect = board.getBoundingClientRect()!;
       if (isFocused) {
         // If the screenSize is tiny or small, make the container take the whole window space
         if (["tiny", "small"].includes(media.name)) {
-          container.current!.style.top = board.offsetTop! + "px";
-          container.current!.style.left = "0";
-          container.current!.style.height = `calc(100vh - ${board.offsetTop! + "px"})`;
-          container.current!.style.width = "100vw";
+          container.current!.style.transition = "none";
+          container.current!.style.top = boxRect.top + "px";
+          container.current!.style.left = boxRect.left + "px";
+          requestAnimationFrame(() => {
+            container.current!.style.transition = "";
+            container.current!.style.top = board.offsetTop! + "px";
+            container.current!.style.left = "0";
+            container.current!.style.height = `calc(100vh - ${board.offsetTop! + "px"})`;
+            container.current!.style.width = "100vw";
+          });
         }
 
         // Make the container take the whole board space if the box is focused
         else {
-          container.current!.style.top = media.gap + "px";
-          container.current!.style.left = media.gap + "px";
+          container.current!.style.top = boardRect.top + window.scrollY + media.gap + "px";
+          container.current!.style.left = boardRect.left + window.scrollX + media.gap + "px";
           container.current!.style.height = board.offsetHeight! - media.gap * 2 + "px";
           container.current!.style.width = board.offsetWidth! - media.gap * 2 + "px";
         }
       }
       // Else make the container take the box space
       else {
-        const parentRect = box.current.parentElement?.getBoundingClientRect()!;
-        const boxRect = box.current.getBoundingClientRect()!;
-        container.current!.style.top = boxRect.top - parentRect.top + "px";
-        container.current!.style.left = boxRect.left - parentRect.left + "px";
-        container.current!.style.width = box.current.offsetWidth + "px";
-        container.current!.style.height = box.current.offsetHeight + "px";
+        if (["tiny", "small"].includes(media.name)) {
+          container.current!.style.top = board.offsetTop + window.scrollY + "px";
+          container.current!.style.left = window.scrollX + boardRect.left + "px";
+          container.current!.style.height = window.innerHeight - board.offsetTop + "px";
+          container.current!.style.width = window.innerWidth + "px";
+          container.current!.style.transition = "none";
+          requestAnimationFrame(() => {
+            container.current!.style.transition = "";
+            container.current!.style.top = boxRect.top + window.scrollY + "px";
+            container.current!.style.left = boxRect.left + window.scrollX + "px";
+            container.current!.style.width = box.current!.offsetWidth + "px";
+            container.current!.style.height = box.current!.offsetHeight + "px";
+          });
+        } else {
+          container.current!.style.top = boxRect.top + window.scrollY + "px";
+          container.current!.style.left = boxRect.left + window.scrollX + "px";
+          container.current!.style.width = box.current!.offsetWidth + "px";
+          container.current!.style.height = box.current!.offsetHeight + "px";
+        }
       }
       // Ensure the preview content has strictly the same size as the box
-      const previewContentEl = container.current!.firstElementChild! as HTMLDivElement;
-      previewContentEl.style.width = box.current.offsetWidth + "px";
-      previewContentEl.style.height = box.current.offsetHeight + "px";
+      // const previewContentEl = container.current!.firstElementChild! as HTMLDivElement;
+      // previewContentEl.style.width = box.current.offsetWidth + "px";
+      // previewContentEl.style.height = box.current.offsetHeight + "px";
 
-      // If the screenSize is tiny or small, ensure the main content has the same width as the window and same height as the board
-      const mainContentEl = previewContentEl.nextElementSibling as HTMLDivElement;
-      if (["tiny", "small"].includes(media.name)) {
-        mainContentEl.style.width = window.innerWidth + "px";
-        mainContentEl.style.height = board.offsetHeight + "px";
-      }
-      // Else ensure the main content has the same size as the board
-      else {
-        mainContentEl.style.width = board.offsetWidth! - media.gap * 2 + "px";
-        mainContentEl.style.height = board.offsetHeight! - media.gap * 2 + "px";
-      }
+      // // If the screenSize is tiny or small, ensure the main content has the same width as the window and same height as the board
+      // const mainContentEl = previewContentEl.nextElementSibling as HTMLDivElement;
+      // if (["tiny", "small"].includes(media.name)) {
+      //   mainContentEl.style.width = window.innerWidth + "px";
+      //   mainContentEl.style.height = board.offsetHeight + "px";
+      // }
+      // // Else ensure the main content has the same size as the board
+      // else {
+      //   mainContentEl.style.width = board.offsetWidth! - media.gap * 2 + "px";
+      //   mainContentEl.style.height = board.offsetHeight! - media.gap * 2 + "px";
+      // }
     }
   };
   const handleFocus = () => {
@@ -87,9 +109,6 @@ export const Box: FC<BoxProps> = ({ children, className, position, ...props }) =
 
       // Pur the current focused container at the foreground
       container.current!.style.zIndex = "10";
-
-      // Update container size and position
-      handleContentContainer();
     }
   };
   const handleBlur = () => {
@@ -104,13 +123,12 @@ export const Box: FC<BoxProps> = ({ children, className, position, ...props }) =
         if (!document.activeElement || !container.current!.contains(document.activeElement)) {
           // Set the new focused state
           setIsFocused(false);
-
-          // Update container size and position
-          handleContentContainer();
         }
       });
     }
   };
+  useEffect(handleContentContainer, [isFocused, media]);
+
   useEffect(() => {
     handleContentContainer();
     window.addEventListener("resize", handleContentContainer);

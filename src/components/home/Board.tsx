@@ -133,7 +133,7 @@ export const Board: FC = () => {
         padding: medias[screenSize].gap + "px",
       }}
       ref={board}
-      className={clsx("grid w-[3000px] relative")}
+      className={clsx("grid w-[3000px]")}
       // Below medium screen size, the boxes are
       // ["large", "medium"].includes(screenSize) && "relative")}
     >
