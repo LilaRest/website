@@ -1,3 +1,11 @@
+## [1.11.0](https://github.com/LilaRest/website/compare/v1.10.1...v1.11.0) (2023-05-25)
+
+
+### Features
+
+* add headers links URLs ([dac0453](https://github.com/LilaRest/website/commit/dac04534148cceca08c0d1228f54d0b0e80fa0fa))
+* add theme switcher ([bdc1718](https://github.com/LilaRest/website/commit/bdc17183c9d8051d1316eac267ba0d431dde5f4a))
+
 ## [1.10.1](https://github.com/LilaRest/website/compare/v1.10.0...v1.10.1) (2023-05-25)
 
 
