@@ -1,3 +1,11 @@
+## [1.9.0](https://github.com/LilaRest/website/compare/v1.8.1...v1.9.0) (2023-05-25)
+
+
+### Features
+
+* **board:** fix card shifting on close on small and tiny screen sizes ([581eb6e](https://github.com/LilaRest/website/commit/581eb6e3a1f24b7be9523713eaea58329e9c27ed))
+* **board:** make the focused box fixed and taking the whole screen on small and tiny screen sizes ([512f2e9](https://github.com/LilaRest/website/commit/512f2e9fb76d88d68b6ca5654cc7a96143bcc270))
+
 ## [1.8.1](https://github.com/LilaRest/website/compare/v1.8.0...v1.8.1) (2023-05-23)
 
 
