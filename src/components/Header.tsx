@@ -23,17 +23,17 @@ const Header: FC = () => (
             </Link>
           </li>
           <li>
-            <Link href="" target="_blank">
+            <Link href="https://github.com/LilaRest" target="_blank">
               Github
             </Link>
           </li>
           <li>
-            <Link href="" target="_blank">
-              Lens
+            <Link href="https://lenster.xyz/u/lilarest" target="_blank">
+              Lenster
             </Link>
           </li>
           <li>
-            <Link href="" target="_blank">
+            <Link href="https://www.linkedin.com/in/lila-rest-5159b423b/" target="_blank">
               LinkedIn
             </Link>
           </li>
