@@ -1,7 +1,7 @@
 import React, { FC, useContext, useEffect, useRef, useState } from "react";
 import { twMerge } from "tailwind-merge";
 import { MediaContext } from "./Board";
-
+import { Button } from "@/components/ui";
 export interface BoxProps extends React.HTMLAttributes<HTMLDivElement> {
   position?: string;
 }
@@ -143,6 +143,7 @@ export const Box: FC<BoxProps> = ({ children, className, position, ...props }) =
     if (document.hasFocus()) {
       // Ensure the get back button is blurred once clicked (else the below condition will consider the box still being focused)
       getBackButton.current!.blur();
+      console.log(getBackButton.current);
 
       // Give browser time to remove focus from the box container
       requestAnimationFrame(() => {
@@ -188,13 +189,14 @@ export const Box: FC<BoxProps> = ({ children, className, position, ...props }) =
         {previewContent}
         {mainContent}
         <div className="absolute bottom-4 left-0 right-0 flex justify-center transition-opacity duration-500">
-          <button
+          <Button
+            variant="outline"
+            size={["small", "tiny"].includes(media.name) ? "large" : "default"}
             ref={getBackButton}
             onClick={handleBlur}
-            className="bg-slate-200 hover:bg-slate-300 transition duration-500 border-slate-400 border-2 border-solid rounded-xl py-2 px-4"
           >
             Get back
-          </button>
+          </Button>
         </div>
       </div>
     </article>

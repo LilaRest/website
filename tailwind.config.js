@@ -39,7 +39,7 @@ const vars = {
     // "--border": toRGB(colors.slate[800]),
 
     // // Border colors for inputs components (input, select, textarea, ...)
-    // "--input": toRGB(colors.slate[300]),
+    "--input": toRGB(colors.slate[300]),
 
     // // Focus ring color
     "--ring": toRGB(colors.indigo[300]),
@@ -49,7 +49,8 @@ const vars = {
   },
   ".dark": {
     "--bg": toRGB(colors.slate[800]),
-    "--fg": toRGB(colors.slate[50]),
+    "--fg": toRGB(colors.slate[200]),
+    "--input": toRGB(colors.slate[400]),
   }
 };
 
