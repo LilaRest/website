@@ -41,7 +41,7 @@ export const Box: FC<BoxProps> = ({ children, className, position, ...props }) =
             container.current!.style.transition = "";
             container.current!.style.top = board.offsetTop! + "px";
             container.current!.style.left = "0";
-            container.current!.style.height = `calc(100vh - ${board.offsetTop! + "px"})`;
+            container.current!.style.height = `calc(100vh - ${board.offsetTop!}px)`;
             container.current!.style.width = "100vw";
           });
         }
@@ -77,21 +77,21 @@ export const Box: FC<BoxProps> = ({ children, className, position, ...props }) =
         }
       }
       // Ensure the preview content has strictly the same size as the box
-      // const previewContentEl = container.current!.firstElementChild! as HTMLDivElement;
-      // previewContentEl.style.width = box.current.offsetWidth + "px";
-      // previewContentEl.style.height = box.current.offsetHeight + "px";
+      const previewContentEl = container.current!.firstElementChild! as HTMLDivElement;
+      previewContentEl.style.width = box.current.offsetWidth + "px";
+      previewContentEl.style.height = box.current.offsetHeight + "px";
 
-      // // If the screenSize is tiny or small, ensure the main content has the same width as the window and same height as the board
-      // const mainContentEl = previewContentEl.nextElementSibling as HTMLDivElement;
-      // if (["tiny", "small"].includes(media.name)) {
-      //   mainContentEl.style.width = window.innerWidth + "px";
-      //   mainContentEl.style.height = board.offsetHeight + "px";
-      // }
-      // // Else ensure the main content has the same size as the board
-      // else {
-      //   mainContentEl.style.width = board.offsetWidth! - media.gap * 2 + "px";
-      //   mainContentEl.style.height = board.offsetHeight! - media.gap * 2 + "px";
-      // }
+      // If the screenSize is tiny or small, ensure the main content has the same width as the window and same height as the board
+      const mainContentEl = previewContentEl.nextElementSibling as HTMLDivElement;
+      if (["tiny", "small"].includes(media.name)) {
+        mainContentEl.style.width = window.innerWidth + "px";
+        mainContentEl.style.height = `calc(100vh - ${board.offsetTop!}px)`;
+      }
+      // Else ensure the main content has the same size as the board
+      else {
+        mainContentEl.style.width = board.offsetWidth! - media.gap * 2 + "px";
+        mainContentEl.style.height = board.offsetHeight! - media.gap * 2 + "px";
+      }
     }
   };
   const handleFocus = () => {
