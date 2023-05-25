@@ -17,63 +17,85 @@ export const Box: FC<BoxProps> = ({ children, className, position, ...props }) =
     }
   });
 
-  // Handle content container size and position
+  // Create a bunch of refs and states
   const media = useContext(MediaContext);
   const box = useRef<HTMLDivElement | null>(null);
   const container = useRef<HTMLDivElement | null>(null);
   const getBackButton = useRef<HTMLButtonElement | null>(null);
   const [isFocused, setIsFocused] = useState(false);
 
-  const handleContentContainer = () => {
-    if (box.current) {
+  // This function is called to update the size, position and render of the content container and its children
+  const handleContainer = () => {
+    if (box.current && container.current) {
+      // Retrieve the parent board element.
       const board = box.current.parentElement!;
 
-      // Expand the conainer on focus
+      // Retrieve position and size data about the box and the board
       const boxRect = box.current.getBoundingClientRect()!;
       const boardRect = board.getBoundingClientRect()!;
+
+      // Expand the content container on focus
       if (isFocused) {
         // If the screenSize is tiny or small, make the container take the whole window space
         if (["tiny", "small"].includes(media.name)) {
-          container.current!.style.transition = "none";
-          container.current!.style.top = boxRect.top + "px";
-          container.current!.style.left = boxRect.left + "px";
+          // Remove the transition and put the fixed container in front of its box to avoid a shift effect
+          // while transiting from absolute to fixed position
+          container.current.style.transition = "none";
+          container.current.style.top = boxRect.top + "px";
+          container.current.style.left = boxRect.left + "px";
+
+          // Wait for the next frame to apply the transition and the fixed position
           requestAnimationFrame(() => {
-            container.current!.style.transition = "";
-            container.current!.style.top = board.offsetTop! + "px";
-            container.current!.style.left = "0";
-            container.current!.style.height = `calc(100vh - ${board.offsetTop!}px)`;
-            container.current!.style.width = "100vw";
+            if (container.current) {
+              // Re-enable the transition
+              container.current.style.transition = "";
+
+              // Make the content container take the whole window space except header
+              container.current.style.top = board.offsetTop! + "px";
+              container.current.style.left = "0";
+              container.current.style.height = `calc(100vh - ${board.offsetTop!}px)`;
+              container.current.style.width = "100vw";
+            }
           });
         }
 
-        // Make the container take the whole board space if the box is focused
+        // Else, make the container take the whole board space
         else {
-          container.current!.style.top = boardRect.top + window.scrollY + media.gap + "px";
-          container.current!.style.left = boardRect.left + window.scrollX + media.gap + "px";
-          container.current!.style.height = board.offsetHeight! - media.gap * 2 + "px";
-          container.current!.style.width = board.offsetWidth! - media.gap * 2 + "px";
+          container.current.style.top = boardRect.top + window.scrollY + media.gap + "px";
+          container.current.style.left = boardRect.left + window.scrollX + media.gap + "px";
+          container.current.style.height = board.offsetHeight! - media.gap * 2 + "px";
+          container.current.style.width = board.offsetWidth! - media.gap * 2 + "px";
         }
       }
       // Else make the container take the box space
       else {
         if (["tiny", "small"].includes(media.name)) {
-          container.current!.style.top = board.offsetTop + window.scrollY + "px";
-          container.current!.style.left = window.scrollX + boardRect.left + "px";
-          container.current!.style.height = window.innerHeight - board.offsetTop + "px";
-          container.current!.style.width = window.innerWidth + "px";
-          container.current!.style.transition = "none";
+          // Remove the transition and put the absolute container to take the whole screen to avoid a shift effect
+          // while transiting from fixed to absolute position
+          container.current.style.transition = "none";
+          container.current.style.top = board.offsetTop + window.scrollY + "px";
+          container.current.style.left = window.scrollX + boardRect.left + "px";
+          container.current.style.height = window.innerHeight - board.offsetTop + "px";
+          container.current.style.width = window.innerWidth + "px";
+
+          // Wait for the next frame to apply the transition and the absolute position
           requestAnimationFrame(() => {
-            container.current!.style.transition = "";
-            container.current!.style.top = boxRect.top + window.scrollY + "px";
-            container.current!.style.left = boxRect.left + window.scrollX + "px";
-            container.current!.style.width = box.current!.offsetWidth + "px";
-            container.current!.style.height = box.current!.offsetHeight + "px";
+            if (container.current) {
+              // Re-enable the transition
+              container.current.style.transition = "";
+
+              // Make the content container take its whole box space
+              container.current.style.top = boxRect.top + window.scrollY + "px";
+              container.current.style.left = boxRect.left + window.scrollX + "px";
+              container.current.style.width = box.current!.offsetWidth + "px";
+              container.current.style.height = box.current!.offsetHeight + "px";
+            }
           });
         } else {
-          container.current!.style.top = boxRect.top + window.scrollY + "px";
-          container.current!.style.left = boxRect.left + window.scrollX + "px";
-          container.current!.style.width = box.current!.offsetWidth + "px";
-          container.current!.style.height = box.current!.offsetHeight + "px";
+          container.current.style.top = boxRect.top + window.scrollY + "px";
+          container.current.style.left = boxRect.left + window.scrollX + "px";
+          container.current.style.width = box.current!.offsetWidth + "px";
+          container.current.style.height = box.current!.offsetHeight + "px";
         }
       }
       // Ensure the preview content has strictly the same size as the box
@@ -94,8 +116,10 @@ export const Box: FC<BoxProps> = ({ children, className, position, ...props }) =
       }
     }
   };
+
+  // This function is called each time the focus is put on the box container
   const handleFocus = () => {
-    // If the box is not already focused
+    // Prevent recalling the function if the box is already focused
     if (!isFocused) {
       // Set the new focused state
       setIsFocused(true);
@@ -107,17 +131,20 @@ export const Box: FC<BoxProps> = ({ children, className, position, ...props }) =
         if (container.style.zIndex !== "0") container.style.zIndex = parseInt(container.style.zIndex) - 1 + "";
       });
 
-      // Pur the current focused container at the foreground
+      // Put the current focused container at the foreground
       container.current!.style.zIndex = "10";
     }
   };
-  const handleBlur = () => {
-    // Ensure the get back button is blurred once clicked (else the below condition will consider the box still being focused)
-    getBackButton.current!.blur();
 
-    // If the whole page has not lost focus (e.g. user changed tab or window)
+  // This function is called each time the focus is removed from the box container
+  const handleBlur = () => {
+    // Prevent calling the functino if its the whole page that has lost focus and not
+    // only the box container(e.g., user changed tab or window)
     if (document.hasFocus()) {
-      // Give browser time to focus the next element
+      // Ensure the get back button is blurred once clicked (else the below condition will consider the box still being focused)
+      getBackButton.current!.blur();
+
+      // Give browser time to remove focus from the box container
       requestAnimationFrame(() => {
         // If the new focused element is not still in the current container
         if (!document.activeElement || !container.current!.contains(document.activeElement)) {
@@ -127,13 +154,16 @@ export const Box: FC<BoxProps> = ({ children, className, position, ...props }) =
       });
     }
   };
-  useEffect(handleContentContainer, [isFocused, media]);
 
+  // Re-render container each time the focused state changes
+  useEffect(handleContainer, [isFocused, media]);
+
+  // Re-render container each time the window size changes
   useEffect(() => {
-    handleContentContainer();
-    window.addEventListener("resize", handleContentContainer);
+    handleContainer();
+    window.addEventListener("resize", handleContainer);
     return () => {
-      window.removeEventListener("resize", handleContentContainer);
+      window.removeEventListener("resize", handleContainer);
     };
   });
 
