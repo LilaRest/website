@@ -1,3 +1,10 @@
+## [1.10.1](https://github.com/LilaRest/website/compare/v1.10.0...v1.10.1) (2023-05-25)
+
+
+### Fixes
+
+* **deps:** update dependency @types/react to v18.2.7 ([f4adaf5](https://github.com/LilaRest/website/commit/f4adaf5e6c721a51569e71a3b831cc0d139082d7))
+
 ## [1.10.0](https://github.com/LilaRest/website/compare/v1.9.0...v1.10.0) (2023-05-25)
 
 
