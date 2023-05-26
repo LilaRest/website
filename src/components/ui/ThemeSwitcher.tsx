@@ -93,4 +93,4 @@ export const ThemeSwitcher: FC<Props> = ({ className, ...props }) => {
   );
 };
 
-export default ThemeSwitcher;
+// export default ThemeSwitcher;

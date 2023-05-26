@@ -61,6 +61,10 @@ module.exports = {
     './src/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
+    fontFamily: {
+      heading: ["var(--font-heading)"],
+      body: ["var(--font-body)"]
+    },
     extend: {
       backgroundImage: {
         reveal: "radial-gradient(300px circle at var(--mouse-x) var(--mouse-y), #55ff5599, #55ff5599,  white)"

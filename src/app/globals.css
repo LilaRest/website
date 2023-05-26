@@ -10,7 +10,6 @@
 
   body {
     /* Style - Apply default font, text color and background */
-    @apply text-fg bg-bg;
-    /* font-body */
+    @apply text-fg bg-bg font-body;
   }
 }
