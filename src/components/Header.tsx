@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { FC } from "react";
 import profilePicture from "~/assets/pp.jpg";
-import { ThemeSwitch } from "@/components/ui";
+import { ThemeSwitcher } from "@/components/ui";
 
 const Header: FC = () => (
   <header className="pb-[88px] relative z-50">
@@ -39,7 +39,7 @@ const Header: FC = () => (
             </Link>
           </li>
           <li className="flex justify-center items-center">
-            <ThemeSwitch />
+            <ThemeSwitcher />
           </li>
         </ul>
       </nav>

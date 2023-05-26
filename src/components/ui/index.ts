@@ -1,4 +1,5 @@
 export * from "./HiddenMask";
 export * from "./HiddenMasksHelper";
-export * from "./ThemeSwitch";
+export * from "./ThemeSwitcher";
 export * from "./Button";
+export * from "./Tooltip";

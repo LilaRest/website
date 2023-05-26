@@ -1,7 +1,7 @@
 import "./globals.css";
 import { Inter } from "next/font/google";
 import Header from "@/components/Header";
-import { HiddenMasksHelper } from "@/components/ui";
+import { HiddenMasksHelper, TooltipProvider } from "@/components/ui";
 import clsx from "clsx";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -16,9 +16,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en">
       <HiddenMasksHelper />
       <body className={clsx(inter.className, "dark")}>
-        <Header />
-        <main>{children}</main>
-        {/* <Footer /> */}
+        <TooltipProvider>
+          <Header />
+          <main>{children}</main>
+          {/* <Footer /> */}
+        </TooltipProvider>
       </body>
     </html>
   );
