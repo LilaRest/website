@@ -22,10 +22,17 @@ checked = light
 export const ThemeSwitcher: FC<Props> = ({ className, ...props }) => {
   const [isExplicit, setIsExplicit] = useState(false);
   const [checked, setChecked] = useState(false); // Default to dark (unchecked)
+  const [isResetting, setIsResetting] = useState(false);
 
   const handleReset = () => {
-    resetExplicitPreference();
-    handleTheme();
+    setIsResetting(true);
+    requestAnimationFrame(() => {
+      resetExplicitPreference();
+      handleTheme();
+      setTimeout(() => {
+        setIsResetting(false);
+      }, 1000);
+    });
   };
 
   const handleToggle = (checked: boolean) => {
@@ -70,7 +77,12 @@ export const ThemeSwitcher: FC<Props> = ({ className, ...props }) => {
       </SwitchPrimitive.Root>
       <TooltipRoot>
         <TooltipTrigger
-          className={twMerge("focus:animate-spin transition-all", !isExplicit && "-ml-5", isExplicit && "ml-[0.35rem]")}
+          className={twMerge(
+            "transition-all",
+            isResetting && "animate-spin",
+            !isExplicit && "-ml-5",
+            isExplicit && "ml-[0.35rem]"
+          )}
           onClick={handleReset}
         >
           <div className="h-[20px] w-[20px] fill-slate-400">{resetIcon}</div>
