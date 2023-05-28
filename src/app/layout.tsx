@@ -14,7 +14,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en">
       <HiddenMasksHelper />
       <body className={clsx(fonts, "dark")}>
-        <TooltipProvider>
+        <TooltipProvider delayDuration={400}>
           <Header />
           <main>{children}</main>
           {/* <Footer /> */}
