@@ -7,8 +7,8 @@ const toRGB = val => parseColor(val).color.join(" ");
 const vars = {
   ":root": {
     // Default background (bg) and text-color (fg) applied to <body/>
-    "--bg": toRGB(colors.slate[50]),
-    "--fg": toRGB(colors.slate[800]),
+    "--bg": toRGB(colors.neutral[50]),
+    "--fg": toRGB(colors.neutral[700]),
 
     // // Accentuated versions of default background and foreground
     // // Used for:
@@ -48,9 +48,9 @@ const vars = {
     // "--radius": "0.8rem"
   },
   ".dark": {
-    "--bg": toRGB(colors.slate[800]),
-    "--fg": toRGB(colors.slate[200]),
-    "--input": toRGB(colors.slate[400]),
+    "--bg": toRGB(colors.neutral[800]),
+    "--fg": toRGB(colors.neutral[300]),
+    "--input": toRGB(colors.neutral[400]),
   }
 };
 

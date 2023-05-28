@@ -6,7 +6,7 @@ interface Props extends BoxProps {}
 
 export const BookMeBox: FC<Props> = ({ className, ...props }) => {
   return (
-    <Box className={twMerge("bg-green-500", className)} {...props}>
+    <Box className={twMerge("", className)} {...props}>
       <Preview>Book me</Preview>
       <Main>Lorem ipsum dolor sit amet</Main>
     </Box>
