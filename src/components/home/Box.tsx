@@ -172,7 +172,7 @@ export const Box: FC<BoxProps> = ({ children, className, position, ...props }) =
       <div
         ref={container}
         className={twMerge(
-          "rounded-3xl duration-500 overflow-hidden ease-in-out absolute transition-[top,left,height,width,border-radius] bg-fg/5 backdrop-blur-xl",
+          "rounded-3xl duration-500 overflow-hidden ease-in-out absolute transition-[top,left,height,width,border-radius] bg-fg/5 backdrop-blur-2xl",
           "[&_>:nth-child(1)]:opacity-100 [&_>:nth-child(2)]:opacity-0 [&_>:nth-child(2)]:pointer-events-none [&_>:nth-child(3)]:opacity-0 [&_>:nth-child(3)]:pointer-events-none",
           isFocused &&
             "[&_>:nth-child(1)]:opacity-0 [&_>:nth-child(1)]:pointer-events-none [&_>:nth-child(2)]:opacity-100 [&_>:nth-child(2)]:pointer-events-auto [&_>:nth-child(3)]:opacity-100  [&_>:nth-child(3)]:pointer-events-auto",
@@ -187,7 +187,7 @@ export const Box: FC<BoxProps> = ({ children, className, position, ...props }) =
         {/* Insert preview and main box contents */}
         {previewContent}
         {mainContent}
-        <div className="absolute bottom-4 left-0 right-0 flex justify-center transition-opacity duration-500">
+        <div className="absolute bottom-4 left-0 right-0 flex justify-center transition-opacity">
           <Button
             variant="outline"
             size={["small", "tiny"].includes(media.name) ? "large" : "default"}
