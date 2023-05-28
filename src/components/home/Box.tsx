@@ -143,7 +143,6 @@ export const Box: FC<BoxProps> = ({ children, className, position, ...props }) =
     if (document.hasFocus()) {
       // Ensure the get back button is blurred once clicked (else the below condition will consider the box still being focused)
       getBackButton.current!.blur();
-      console.log(getBackButton.current);
 
       // Give browser time to remove focus from the box container
       requestAnimationFrame(() => {

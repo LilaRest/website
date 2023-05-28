@@ -1,16 +1,8 @@
 import "./globals.css";
-import { Merienda as Font } from "next/font/google";
 import Header from "@/components/Header";
 import { HiddenMasksHelper, TooltipProvider } from "@/components/ui";
 import clsx from "clsx";
-
-const poppins = Font({
-  weight: ["400", "800", "900"],
-  style: ["normal"],
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-heading",
-});
+import { fonts } from "@/lib/fonts";
 
 export const metadata = {
   title: "Lila Rest",
@@ -21,7 +13,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <HiddenMasksHelper />
-      <body className={clsx(poppins.className, "dark")}>
+      <body className={clsx(fonts, "dark")}>
         <TooltipProvider>
           <Header />
           <main>{children}</main>

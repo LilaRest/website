@@ -1,7 +1,7 @@
 "use client";
 import { FC, useEffect, useState } from "react";
 import * as SwitchPrimitive from "@radix-ui/react-switch";
-import { TooltipRoot, TooltipTrigger, TooltipContent } from "@/components/ui";
+import { TooltipRoot, TooltipTrigger, TooltipContent } from "./Tooltip";
 import { twMerge } from "tailwind-merge";
 import { sunIcon, moonIcon, resetIcon } from "@/lib/icons";
 import clsx from "clsx";

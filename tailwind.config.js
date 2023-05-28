@@ -7,7 +7,7 @@ const toRGB = val => parseColor(val).color.join(" ");
 const vars = {
   ":root": {
     // Default background (bg) and text-color (fg) applied to <body/>
-    "--bg": toRGB(colors.indigo[50]),
+    "--bg": toRGB(colors.slate[50]),
     "--fg": toRGB(colors.slate[800]),
 
     // // Accentuated versions of default background and foreground
@@ -62,8 +62,9 @@ module.exports = {
   ],
   theme: {
     fontFamily: {
+      logo: ["var(--font-logo)"],
+      body: ["var(--font-body)"],
       heading: ["var(--font-heading)"],
-      body: ["var(--font-body)"]
     },
     extend: {
       backgroundImage: {
@@ -95,7 +96,7 @@ module.exports = {
     },
   },
   plugins: [
-    require('@tailwindcss/typography'),
+    // require('@tailwindcss/typography'),
     plugin(({ addBase }) => addBase(vars)),
   ],
 };
