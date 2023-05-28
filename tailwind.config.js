@@ -7,8 +7,10 @@ const toRGB = val => parseColor(val).color.join(" ");
 const vars = {
   ":root": {
     // Default background (bg) and text-color (fg) applied to <body/>
-    "--bg": toRGB(colors.neutral[50]),
-    "--fg": toRGB(colors.neutral[700]),
+    "--bg": toRGB(colors.neutral[100]),
+    "--fg": toRGB(colors.neutral[500]),
+    "--accent-bg": toRGB(colors.neutral[300]),
+    "--accent-fg": toRGB(colors.neutral[700]),
 
     // // Accentuated versions of default background and foreground
     // // Used for:
@@ -39,7 +41,7 @@ const vars = {
     // "--border": toRGB(colors.slate[800]),
 
     // // Border colors for inputs components (input, select, textarea, ...)
-    "--input": toRGB(colors.slate[300]),
+    // "--input": toRGB(colors.neutral[300]),
 
     // // Focus ring color
     "--ring": toRGB(colors.indigo[300]),
@@ -49,8 +51,10 @@ const vars = {
   },
   ".dark": {
     "--bg": toRGB(colors.neutral[800]),
-    "--fg": toRGB(colors.neutral[300]),
-    "--input": toRGB(colors.neutral[400]),
+    "--fg": toRGB(colors.neutral[400]),
+    "--accent-bg": toRGB("#383838"),
+    "--accent-fg": toRGB(colors.neutral[200]),
+    // "--input": toRGB(colors.neutral[400]),
   }
 };
 
@@ -73,17 +77,20 @@ module.exports = {
       colors: {
         bg: "rgb(var(--bg) / <alpha-value>)",
         fg: "rgb(var(--fg) / <alpha-value>)",
-        primary: {
-          DEFAULT: "rgb(var(--primary-bg) / <alpha-value>)",
-          fg: "rgb(var(--primary-fg) / <alpha-value>)",
-        },
-        secondary: {
-          DEFAULT: "rgb(var(--secondary-bg) / <alpha-value>)",
-          fg: "rgb(var(--secondary-fg) / <alpha-value>)",
-        },
-        destructive: {
-          DEFAULT: "rgb(var(--destructive-bg) / <alpha-value>)",
-          fg: "rgb(var(--destructive-fg) / <alpha-value>)",
+        // primary: {
+        //   DEFAULT: "rgb(var(--primary-bg) / <alpha-value>)",
+        //   fg: "rgb(var(--primary-fg) / <alpha-value>)",
+        // },
+        // secondary: {
+        //   DEFAULT: "rgb(var(--secondary-bg) / <alpha-value>)",
+        //   fg: "rgb(var(--secondary-fg) / <alpha-value>)",
+        // },
+        // destructive: {
+        //   DEFAULT: "rgb(var(--destructive-bg) / <alpha-value>)",
+        //   fg: "rgb(var(--destructive-fg) / <alpha-value>)",
+        // },
+        card: {
+          DEFAULT: "rgb(var(--accent-bg) / 0.2)",
         },
         accent: {
           DEFAULT: "rgb(var(--accent-bg) / <alpha-value>)",

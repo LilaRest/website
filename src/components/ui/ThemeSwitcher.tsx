@@ -57,7 +57,7 @@ export const ThemeSwitcher: FC<Props> = ({ className, ...props }) => {
     <div className="flex justify-center items-center">
       <SwitchPrimitive.Root
         className={twMerge(
-          "fill-fg hover:fill-fg/80 bg-bg border-input border-2 border-solid w-9 h-9 rounded-xl flex justify-center items-center z-10 relative",
+          "fill-fg hover:fill-accent-fg bg-card w-9 h-9 rounded-2xl flex justify-center items-center z-10 relative",
           className
         )}
         checked={checked}
@@ -80,12 +80,12 @@ export const ThemeSwitcher: FC<Props> = ({ className, ...props }) => {
           className={twMerge(
             "transition-all",
             isResetting && "animate-spin",
-            !isExplicit && "-ml-5",
-            isExplicit && "ml-[0.35rem]"
+            !isExplicit && "-ml-5 opacity-0",
+            isExplicit && "ml-[0.35rem] opacity-1"
           )}
           onClick={handleReset}
         >
-          <div className="h-[20px] w-[20px] fill-slate-400">{resetIcon}</div>
+          <div className="h-[20px] w-[20px] fill-fg/80 hover:fill-accent-fg">{resetIcon}</div>
         </TooltipTrigger>
         <TooltipContent>Reset to system default</TooltipContent>
       </TooltipRoot>
