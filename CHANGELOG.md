@@ -1,3 +1,14 @@
+## [1.12.0](https://github.com/LilaRest/website/compare/v1.11.0...v1.12.0) (2023-05-28)
+
+
+### Features
+
+* fix fonts, split header ([1c15786](https://github.com/LilaRest/website/commit/1c15786c05f8c87b888414ccb509fa7daa6a9023))
+* **header:** end first minimal version ([1e0a63b](https://github.com/LilaRest/website/commit/1e0a63b65e168a629d9b8a59274f938a5824743e))
+* **header:** improve logo and navigation ([fb561d0](https://github.com/LilaRest/website/commit/fb561d0e36143db85fbef6c585099d684ed1d42e))
+* improve header ([5b570c5](https://github.com/LilaRest/website/commit/5b570c5d9df9784a23d334664c16d79b6ff6cae2))
+* improve theme switcher + add tooltip component ([cf00e66](https://github.com/LilaRest/website/commit/cf00e66af80523146de3cc82ec8999ba01d0b1a6))
+
 ## [1.11.0](https://github.com/LilaRest/website/compare/v1.10.1...v1.11.0) (2023-05-25)
 
 
