@@ -1,3 +1,10 @@
+## [1.13.0](https://github.com/LilaRest/website/compare/v1.12.0...v1.13.0) (2023-05-28)
+
+
+### Features
+
+* normalize transition durations + add hover effect to header links ([61034d8](https://github.com/LilaRest/website/commit/61034d8bf00d82ff15b57bdedd64af5d44e19128))
+
 ## [1.12.0](https://github.com/LilaRest/website/compare/v1.11.0...v1.12.0) (2023-05-28)
 
 
