@@ -23,7 +23,6 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
           default: "bg-primary text-primary-fg",
           destructive: "bg-destructive text-destructive-fg",
           outline: "bg-bg border-2 border-fg/80",
-          secondary: "bg-secondary text-secondary-fg",
         }[variant],
 
         // Sizes

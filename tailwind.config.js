@@ -72,7 +72,7 @@ module.exports = {
     },
     extend: {
       backgroundImage: {
-        reveal: "radial-gradient(300px circle at var(--mouse-x) var(--mouse-y), #55ff5599, #55ff5599,  white)"
+        reveal: "radial-gradient(500px circle at var(--mouse-x) var(--mouse-y), #34d39922, transparent)"
       },
       colors: {
         bg: "rgb(var(--bg) / <alpha-value>)",

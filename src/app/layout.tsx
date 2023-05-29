@@ -1,6 +1,6 @@
 import "./globals.css";
 import Header from "@/components/Header";
-import { HiddenMasksHelper, TooltipProvider } from "@/components/ui";
+import { HiddenMask, HiddenMasksHelper, TooltipProvider } from "@/components/ui";
 import clsx from "clsx";
 import { fonts } from "@/lib/fonts";
 
@@ -13,11 +13,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <HiddenMasksHelper />
-      <body className={clsx(fonts, "dark")}>
+      <body className={clsx(fonts, "dark bg-reveal reveal")}>
         <TooltipProvider delayDuration={400}>
-          <Header />
-          <main>{children}</main>
-          {/* <Footer /> */}
+          <HiddenMask pattern="tiny" />
+          <div className="min-h-screen max-w-screen">
+            <Header />
+            <main>{children}</main>
+            {/* <Footer /> */}
+          </div>
         </TooltipProvider>
       </body>
     </html>

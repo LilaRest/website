@@ -57,7 +57,7 @@ export const ThemeSwitcher: FC<Props> = ({ className, ...props }) => {
     <div className="flex justify-center items-center">
       <SwitchPrimitive.Root
         className={twMerge(
-          "fill-fg hover:fill-accent-fg bg-card w-9 h-9 rounded-2xl flex justify-center items-center z-10 relative",
+          "fill-fg hover:fill-accent-fg bg-card backdrop-blur-lg w-9 h-9 rounded-2xl flex justify-center items-center z-10 relative",
           className
         )}
         checked={checked}
