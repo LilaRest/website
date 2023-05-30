@@ -205,7 +205,11 @@ export const Box: FC<BoxProps> = ({ children, className, position, ...props }) =
 interface ContentProps extends React.HTMLAttributes<HTMLDivElement> {}
 const Content: FC<ContentProps> = ({ children, className, ...props }) => (
   <div
-    className={twMerge("w-full h-full !duration-500 p-8 absolute top-0 left-0 transition-opacity", className)}
+    className={twMerge(
+      "w-full h-full !duration-500 p-8 absolute top-0 left-0 transition-opacity",
+      "text-3xl tracking-wide font-black",
+      className
+    )}
     {...props}
   >
     {children}

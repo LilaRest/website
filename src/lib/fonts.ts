@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import { Merienda, Inter, Abel } from "next/font/google";
+import { Merienda, Inter, Poppins as Tmp } from "next/font/google";
 
 const logoFont = Merienda({
   weight: ["300", "400", "500", "600", "700", "800", "900"],
@@ -9,8 +9,8 @@ const logoFont = Merienda({
   variable: "--font-logo",
 });
 
-const headingFont = Abel({
-  weight: ["400"],
+const headingFont = Tmp({
+  weight: ["600"],
   style: ["normal"],
   subsets: ["latin"],
   display: "swap",
