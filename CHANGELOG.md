@@ -1,3 +1,10 @@
+## [1.15.1](https://github.com/LilaRest/website/compare/v1.15.0...v1.15.1) (2023-05-31)
+
+
+### Fixes
+
+* move non-runtime libs to devDependencies ([abc7304](https://github.com/LilaRest/website/commit/abc730444c6c58964c40e8345f0e479184d8a6c5))
+
 ## [1.15.0](https://github.com/LilaRest/website/compare/v1.14.0...v1.15.0) (2023-05-31)
 
 
