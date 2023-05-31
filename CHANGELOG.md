@@ -1,3 +1,11 @@
+## [1.15.0](https://github.com/LilaRest/website/compare/v1.14.0...v1.15.0) (2023-05-31)
+
+
+### Features
+
+* add articles and article meta typing + setup prettier explicitely ([1ba5f67](https://github.com/LilaRest/website/commit/1ba5f67ef0b9248ce05b7c047909a7f55dc19de6))
+* draw outline of board articles box + empty missing components ([f96c263](https://github.com/LilaRest/website/commit/f96c263a82465a31c643e615b9a79429a1f56e9b))
+
 ## [1.14.0](https://github.com/LilaRest/website/compare/v1.13.0...v1.14.0) (2023-05-29)
 
 
