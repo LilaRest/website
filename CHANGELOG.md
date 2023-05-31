@@ -1,3 +1,17 @@
+## [1.14.0](https://github.com/LilaRest/website/compare/v1.13.0...v1.14.0) (2023-05-29)
+
+
+### Features
+
+* adjust Tooltip colors and positionning + fix boxes transition duration ([9777c6f](https://github.com/LilaRest/website/commit/9777c6fb5cedb18f421efc688459c274c66cb4bf))
+* fine tune a normalize colors ([65b25f7](https://github.com/LilaRest/website/commit/65b25f7049d7b5f25fa07328d03a3c8d6b9257a4))
+* first working version of hidden mask + few adjustments ([9018298](https://github.com/LilaRest/website/commit/90182986d2d30cd6c3df28900d6b5e96b6c0bb9d))
+
+
+### Fixes
+
+* comment navigation-menu to fix deployment error ([d6884ff](https://github.com/LilaRest/website/commit/d6884ff332d21c05ae5329e1d0d8a4d8fdf45222))
+
 ## [1.13.0](https://github.com/LilaRest/website/compare/v1.12.0...v1.13.0) (2023-05-28)
 
 ### Features
