@@ -13,9 +13,16 @@ export const TooltipArrow = TooltipPrimitive.Arrow;
 
 interface Props extends TooltipPrimitive.TooltipContentProps {}
 
-export const TooltipContent: FC<Props> = ({ className, children, ...props }) => (
+export const TooltipContent: FC<Props> = ({
+  className,
+  children,
+  ...props
+}) => (
   <TooltipPrimitive.Content
-    className={twMerge("bg-accent-fg/80 text-sm text-bg px-2 py-1 z-50 rounded-lg", className)}
+    className={twMerge(
+      "bg-accent-fg/80 text-sm text-bg px-2 py-1 z-50 rounded-lg",
+      className
+    )}
     sideOffset={12}
     collisionPadding={16}
     {...props}

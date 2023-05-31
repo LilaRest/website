@@ -39,7 +39,9 @@ _medias.large = {
 };
 _medias.medium = {
   name: "medium",
-  breakpoint: _medias.large.colSize[0] * _medias.large.cols + _medias.large.gap * (_medias.large.cols + 1),
+  breakpoint:
+    _medias.large.colSize[0] * _medias.large.cols +
+    _medias.large.gap * (_medias.large.cols + 1),
   cols: 3,
   rows: 4,
   gap: 30,
@@ -48,7 +50,9 @@ _medias.medium = {
 };
 _medias.small = {
   name: "small",
-  breakpoint: _medias.medium.colSize[0] * _medias.medium.cols + _medias.medium.gap * (_medias.medium.cols + 1),
+  breakpoint:
+    _medias.medium.colSize[0] * _medias.medium.cols +
+    _medias.medium.gap * (_medias.medium.cols + 1),
   cols: 2,
   rows: 5,
   gap: 30,
@@ -57,7 +61,9 @@ _medias.small = {
 };
 _medias.tiny = {
   name: "tiny",
-  breakpoint: _medias.small.colSize[0] * _medias.small.cols + _medias.small.gap * (_medias.small.cols + 1),
+  breakpoint:
+    _medias.small.colSize[0] * _medias.small.cols +
+    _medias.small.gap * (_medias.small.cols + 1),
   cols: 1,
   rows: 7,
   gap: 30,
@@ -81,11 +87,14 @@ export const Board: FC = () => {
   const handleScreenSizeChange = () => {
     // Disable all transitions animations for children containers
     // (This prevents weird animations when the window is resized)
-    while (transitionTimeouts.current!.length) clearTimeout(transitionTimeouts.current!.pop());
+    while (transitionTimeouts.current!.length)
+      clearTimeout(transitionTimeouts.current!.pop());
     Array.from(board.current!.children).forEach((child) => {
       const container = child.firstElementChild! as HTMLDivElement;
       container.style.transition = "none";
-      transitionTimeouts.current!.push(setTimeout(() => (container.style.transition = ""), 500));
+      transitionTimeouts.current!.push(
+        setTimeout(() => (container.style.transition = ""), 500)
+      );
     });
 
     // Retrieve and set the new screen size
@@ -109,8 +118,10 @@ export const Board: FC = () => {
     const minBoardHeight = m.rowSize[0] * m.rows + m.gap * (m.rows + 1);
     const maxBoardHeight = m.rowSize[1] * m.rows + m.gap * (m.rows + 1);
     const parent = board.current?.parentElement!;
-    if (parent.offsetHeight < minBoardHeight) setBoardHeight(`${minBoardHeight}px`);
-    else if (parent.offsetHeight > maxBoardHeight) setBoardHeight(`${maxBoardHeight}px`);
+    if (parent.offsetHeight < minBoardHeight)
+      setBoardHeight(`${minBoardHeight}px`);
+    else if (parent.offsetHeight > maxBoardHeight)
+      setBoardHeight(`${maxBoardHeight}px`);
     else setBoardHeight(`${parent.offsetHeight}px`);
   };
   useEffect(() => {

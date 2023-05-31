@@ -50,14 +50,16 @@ export const ThemeSwitcher: FC<Props> = ({ className, ...props }) => {
   useEffect(() => {
     handleTheme();
     /* Trigger a theme update each time the OS theme changes */
-    window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", handleTheme);
+    window
+      .matchMedia("(prefers-color-scheme: dark)")
+      .addEventListener("change", handleTheme);
   });
 
   return (
     <div className="flex justify-center items-center">
       <SwitchPrimitive.Root
         className={twMerge(
-          "fill-fg hover:fill-accent-fg bg-card backdrop-blur-lg w-9 h-9 rounded-2xl flex justify-center items-center z-10 relative",
+          "hover:fill-accent-fg bg-card backdrop-blur-lg w-9 h-9 rounded-2xl flex justify-center items-center z-10 relative",
           className
         )}
         checked={checked}
@@ -67,8 +69,10 @@ export const ThemeSwitcher: FC<Props> = ({ className, ...props }) => {
         <SwitchPrimitive.Thumb
           className={clsx(
             "inline-block relative h-5 w-5",
-            !checked && "[&_>_:first-child]:opacity-100 [&_>_:last-child]:opacity-0",
-            checked && "[&_>_:first-child]:opacity-0 [&_>_:last-child]:opacity-100"
+            !checked &&
+              "[&_>_:first-child]:opacity-100 [&_>_:last-child]:opacity-0",
+            checked &&
+              "[&_>_:first-child]:opacity-0 [&_>_:last-child]:opacity-100"
           )}
         >
           <div className="absolute inset-0 transition">{moonIcon}</div>
@@ -85,7 +89,9 @@ export const ThemeSwitcher: FC<Props> = ({ className, ...props }) => {
           )}
           onClick={handleReset}
         >
-          <div className="h-[20px] w-[20px] fill-fg/80 hover:fill-accent-fg">{resetIcon}</div>
+          <div className="h-[20px] w-[20px] fill-fg/80 hover:fill-accent-fg">
+            {resetIcon}
+          </div>
         </TooltipTrigger>
         <TooltipContent>Reset to system default</TooltipContent>
       </TooltipRoot>

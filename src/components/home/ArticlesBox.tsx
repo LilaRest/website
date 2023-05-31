@@ -9,7 +9,7 @@ export const ArticlesBox: FC<Props> = ({ className, ...props }) => {
   const latestHotArticle = {};
   const latestArticle = {}; // Is null if equal to latestHotArticle
   const previousHotArticle = {};
-  const latestArticles = []; // Max 3
+  const latestArticles: Article[] = []; // Max 3
 
   return (
     <Box className={twMerge("", className)} {...props}>
@@ -21,7 +21,7 @@ export const ArticlesBox: FC<Props> = ({ className, ...props }) => {
           </li>
           {latestArticle && (
             <li>
-              <ArticleCard article={latestArticle} />
+              <ArticleCard article={latestArticle} latest={true} />
             </li>
           )}
           <li>

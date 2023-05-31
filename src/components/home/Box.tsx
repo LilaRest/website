@@ -6,7 +6,12 @@ export interface BoxProps extends React.HTMLAttributes<HTMLDivElement> {
   position?: string;
 }
 
-export const Box: FC<BoxProps> = ({ children, className, position, ...props }) => {
+export const Box: FC<BoxProps> = ({
+  children,
+  className,
+  position,
+  ...props
+}) => {
   // Retrieve Preview and Main child components contents
   let previewContent: React.ReactElement = <div></div>;
   let mainContent: React.ReactElement = <div></div>;
@@ -61,10 +66,14 @@ export const Box: FC<BoxProps> = ({ children, className, position, ...props }) =
 
         // Else, make the container take the whole board space
         else {
-          container.current.style.top = boardRect.top + window.scrollY + media.gap + "px";
-          container.current.style.left = boardRect.left + window.scrollX + media.gap + "px";
-          container.current.style.height = board.offsetHeight! - media.gap * 2 + "px";
-          container.current.style.width = board.offsetWidth! - media.gap * 2 + "px";
+          container.current.style.top =
+            boardRect.top + window.scrollY + media.gap + "px";
+          container.current.style.left =
+            boardRect.left + window.scrollX + media.gap + "px";
+          container.current.style.height =
+            board.offsetHeight! - media.gap * 2 + "px";
+          container.current.style.width =
+            board.offsetWidth! - media.gap * 2 + "px";
         }
       }
       // Else make the container take the box space
@@ -75,7 +84,8 @@ export const Box: FC<BoxProps> = ({ children, className, position, ...props }) =
           container.current.style.transition = "none";
           container.current.style.top = board.offsetTop + window.scrollY + "px";
           container.current.style.left = window.scrollX + boardRect.left + "px";
-          container.current.style.height = window.innerHeight - board.offsetTop + "px";
+          container.current.style.height =
+            window.innerHeight - board.offsetTop + "px";
           container.current.style.width = window.innerWidth + "px";
 
           // Wait for the next frame to apply the transition and the absolute position
@@ -86,7 +96,8 @@ export const Box: FC<BoxProps> = ({ children, className, position, ...props }) =
 
               // Make the content container take its whole box space
               container.current.style.top = boxRect.top + window.scrollY + "px";
-              container.current.style.left = boxRect.left + window.scrollX + "px";
+              container.current.style.left =
+                boxRect.left + window.scrollX + "px";
               container.current.style.width = box.current!.offsetWidth + "px";
               container.current.style.height = box.current!.offsetHeight + "px";
             }
@@ -99,12 +110,14 @@ export const Box: FC<BoxProps> = ({ children, className, position, ...props }) =
         }
       }
       // Ensure the preview content has strictly the same size as the box
-      const previewContentEl = container.current!.firstElementChild! as HTMLDivElement;
+      const previewContentEl = container.current!
+        .firstElementChild! as HTMLDivElement;
       previewContentEl.style.width = box.current.offsetWidth + "px";
       previewContentEl.style.height = box.current.offsetHeight + "px";
 
       // If the screenSize is tiny or small, ensure the main content has the same width as the window and same height as the board
-      const mainContentEl = previewContentEl.nextElementSibling as HTMLDivElement;
+      const mainContentEl =
+        previewContentEl.nextElementSibling as HTMLDivElement;
       if (["tiny", "small"].includes(media.name)) {
         mainContentEl.style.width = window.innerWidth + "px";
         mainContentEl.style.height = `calc(100vh - ${board.offsetTop!}px)`;
@@ -128,7 +141,8 @@ export const Box: FC<BoxProps> = ({ children, className, position, ...props }) =
       // (zIndex are decremented 1 by 1 to ensure the each box have more priority that all boxes focused before it and not refocused then)
       Array.from(box.current!.parentElement!.children).forEach((box) => {
         const container = box.firstElementChild! as HTMLDivElement;
-        if (container.style.zIndex !== "0") container.style.zIndex = parseInt(container.style.zIndex) - 1 + "";
+        if (container.style.zIndex !== "0")
+          container.style.zIndex = parseInt(container.style.zIndex) - 1 + "";
       });
 
       // Put the current focused container at the foreground
@@ -147,7 +161,10 @@ export const Box: FC<BoxProps> = ({ children, className, position, ...props }) =
       // Give browser time to remove focus from the box container
       requestAnimationFrame(() => {
         // If the new focused element is not still in the current container
-        if (!document.activeElement || !container.current!.contains(document.activeElement)) {
+        if (
+          !document.activeElement ||
+          !container.current!.contains(document.activeElement)
+        ) {
           // Set the new focused state
           setIsFocused(false);
         }
@@ -176,7 +193,9 @@ export const Box: FC<BoxProps> = ({ children, className, position, ...props }) =
           "[&_>:nth-child(1)]:opacity-100 [&_>:nth-child(2)]:opacity-0 [&_>:nth-child(2)]:pointer-events-none [&_>:nth-child(3)]:opacity-0 [&_>:nth-child(3)]:pointer-events-none",
           isFocused &&
             "[&_>:nth-child(1)]:opacity-0 [&_>:nth-child(1)]:pointer-events-none [&_>:nth-child(2)]:opacity-100 [&_>:nth-child(2)]:pointer-events-auto [&_>:nth-child(3)]:opacity-100  [&_>:nth-child(3)]:pointer-events-auto",
-          isFocused && ["tiny", "small"].includes(media.name) && "fixed rounded-none",
+          isFocused &&
+            ["tiny", "small"].includes(media.name) &&
+            "fixed rounded-none",
           className
         )}
         onFocus={handleFocus}

@@ -1,7 +1,7 @@
 import plugin from "tailwindcss/plugin";
 import colors from "tailwindcss/colors";
 import { parseColor } from "tailwindcss/lib/util/color";
-const toRGB = val => parseColor(val).color.join(" ");
+const toRGB = (val) => parseColor(val).color.join(" ");
 
 // Define some CSS variables
 const vars = {
@@ -19,7 +19,7 @@ const vars = {
     // "--accent-bg": toRGB(colors.slate[300]),
     // "--accent-fg": toRGB(colors.slate[900]),
 
-    // // Primary colors 
+    // // Primary colors
     // // Used for:
     // // - <Button variant = "default"/> component
     // "--primary-bg": toRGB(colors.indigo[500]),
@@ -55,15 +55,12 @@ const vars = {
     "--accent-bg": toRGB("#383838"),
     "--accent-fg": toRGB(colors.neutral[200]),
     // "--input": toRGB(colors.neutral[400]),
-  }
+  },
 };
-
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: [
-    './src/**/*.{js,ts,jsx,tsx,mdx}',
-  ],
+  content: ["./src/**/*.{js,ts,jsx,tsx,mdx}"],
   theme: {
     fontFamily: {
       logo: ["var(--font-logo)"],
@@ -72,7 +69,8 @@ module.exports = {
     },
     extend: {
       backgroundImage: {
-        reveal: "radial-gradient(100px circle at var(--mouse-x) var(--mouse-y), #34d39922, #34d39911, transparent)"
+        reveal:
+          "radial-gradient(100px circle at var(--mouse-x) var(--mouse-y), #34d39922, #34d39911, transparent)",
       },
       colors: {
         bg: "rgb(var(--bg) / <alpha-value>)",

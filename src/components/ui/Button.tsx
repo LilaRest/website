@@ -13,7 +13,10 @@ export interface ButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
 }
 
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, children, variant = "default", size = "default", ...props }, ref) => (
+  (
+    { className, children, variant = "default", size = "default", ...props },
+    ref
+  ) => (
     <button
       className={twMerge(
         "inline-flex items-center justify-center rounded-xl font-medium transition-colors hover:bg-opacity-80",

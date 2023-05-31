@@ -17,7 +17,6 @@ const headingFont = Tmp({
   variable: "--font-heading",
 });
 
-
 const bodyFont = Inter({
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
   style: ["normal"],
@@ -26,4 +25,8 @@ const bodyFont = Inter({
   variable: "--font-body",
 });
 
-export const fonts = clsx(logoFont.variable, headingFont.variable, bodyFont.variable);
+export const fonts = clsx(
+  logoFont.variable,
+  headingFont.variable,
+  bodyFont.variable
+);

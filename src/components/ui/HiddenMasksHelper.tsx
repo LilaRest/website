@@ -21,7 +21,8 @@ export const HiddenMasksHelper: FC = () => {
   useEffect(() => {
     reveals.current = document.querySelectorAll<HTMLDivElement>(".reveal");
     document.body.addEventListener("mousemove", handleMouseMove);
-    return () => document.body.removeEventListener("mousemove", handleMouseMove);
+    return () =>
+      document.body.removeEventListener("mousemove", handleMouseMove);
   }, [path]);
   return null;
 };
